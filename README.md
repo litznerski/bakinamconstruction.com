@@ -271,3 +271,9 @@ The `netlify.toml` file already includes security headers (`X-Frame-Options`, `X
 | `pnpm run build` | Build the production site to `./dist/` |
 | `pnpm run preview` | Preview the production build locally |
 | `pnpm run astro check` | Type-check all `.astro` files |
+
+---
+
+## License
+
+This project is open source under the [MIT License](./LICENSE.md).
