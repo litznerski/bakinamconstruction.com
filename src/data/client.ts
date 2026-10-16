@@ -26,9 +26,9 @@ export const client = {
     mapLink: 'https://maps.app.goo.gl/whiUw6LDdeXT61NM7',
   },
   socials: {
-    facebook: 'https://www.facebook.com/',
-    instagram: 'https://www.instagram.com/',
-    google: 'https://www.google.com/maps',
+    facebook: '',
+    instagram: '',
+    google: '',
   },
   domain: 'https://bakinamconstruction.com',
 } as const;
