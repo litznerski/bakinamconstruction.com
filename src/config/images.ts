@@ -37,8 +37,8 @@ import type { ImageMetadata } from 'astro';
 //   2. Uncomment and update the line below
 //   3. Replace the heroImage export at the bottom of this section
 //
-// import heroImage from '../assets/images/hero/hero.jpg';
-export const heroImage: ImageMetadata | undefined = undefined;
+import heroImageSrc from '../assets/images/hero/kafouri3.png';
+export const heroImage: ImageMetadata | undefined = heroImageSrc;
 
 // ── About ─────────────────────────────────────────────────────────────────────
 // Recommended: portrait or square image of your team/job site, at least 900 × 700 px
@@ -48,8 +48,8 @@ export const heroImage: ImageMetadata | undefined = undefined;
 //   2. Uncomment and update the line below
 //   3. Replace the aboutImage export at the bottom of this section
 //
-// import aboutImage from '../assets/images/about/team.jpg';
-export const aboutImage: ImageMetadata | undefined = undefined;
+import aboutImageSrc from '../assets/images/about/kafouri14.png';
+export const aboutImage: ImageMetadata | undefined = aboutImageSrc;
 
 // ── Gallery — auto-discovered ─────────────────────────────────────────────────
 // Drop any number of image files into src/assets/images/gallery/ and they will
