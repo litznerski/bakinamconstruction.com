@@ -11,26 +11,26 @@
  */
 
 export const client = {
-  name: 'bakinam Construction',
-  email: 'hello@example.com',
-  phoneForTel: '555-867-5309',
-  phoneFormatted: '(555) 867-5309',
+  name: 'Bakinam Construction',
+  email: 'contact@bakinamconstruction.com',
+  phoneForTel: '+249123009572',
+  phoneFormatted: '+249 12 300 9572',
   license: '',
   address: {
-    lineOne: '123 Main Street',
-    lineTwo: 'Suite 100',
-    city: 'Denver',
-    state: 'CO',
-    zip: '80206',
-    country: 'US',
-    mapLink: 'https://maps.app.goo.gl/example',
+    lineOne: 'Kafouri Block 3',
+    lineTwo: 'Khartoum North (Bahri)',
+    city: 'Khartoum',
+    state: 'Khartoum State',
+    zip: '',
+    country: 'SD',
+    mapLink: 'https://maps.app.goo.gl/whiUw6LDdeXT61NM7',
   },
   socials: {
     facebook: 'https://www.facebook.com/',
     instagram: 'https://www.instagram.com/',
     google: 'https://www.google.com/maps',
   },
-  domain: 'https://www.example.com',
+  domain: 'https://bakinamconstruction.com',
 } as const;
 
 export type Client = typeof client;

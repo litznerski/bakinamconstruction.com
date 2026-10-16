@@ -6,15 +6,37 @@ import Banner from '../components/Banner.astro';
 import CTA from '../components/CTA.astro';
 import { Image } from 'astro:assets';
 import { brand } from '../config/brand';
+import bakinamImg from '../assets/images/team/bakinam.jpeg';
 
 const team = [
-  { name: 'John Smith',   role: 'Founder & Lead Technician', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80' },
-  { name: 'Maria Garcia', role: 'Operations Manager',        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80' },
-  { name: 'David Chen',   role: 'Senior Technician',         image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80' },
+  {
+    name: 'Bakinam Osman Rahama',
+    role: 'Founder & Managing Director',
+    description: '10+ years of construction leadership in Khartoum. Directs on-the-ground operations, master supplier networks, and client liaison. Co-founder of Drop of Water NGO.',
+    image: bakinamImg,
+  },
+  {
+    name: 'Chief Civil Engineer',
+    role: 'Head of Engineering & Site Supervision',
+    description: 'Leads structural damage audits, concrete integrity testing, crack stabilization, and technical quality control across all project sites.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+  },
+  {
+    name: 'Legal Counsel & Regulatory Advisor',
+    role: 'Head of Legal & Municipal Compliance',
+    description: 'Oversees property documentation checks, municipal and district permits, public utility reconnection liaison, and client contract protections.',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
+  },
+  {
+    name: 'Christof Litznerski',
+    role: 'Marketing, Brand & Systems Strategy',
+    description: 'Oversees diaspora client communication standards, operational transparency, milestone reporting systems, and German-backed project workflows.',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+  },
 ];
 ---
 
-<BaseLayout title="About Us" description={`Learn about ${brand.name} — our story, team, and commitment to quality service.`}>
+<BaseLayout title="About Us" description={`Learn about ${brand.name} — our story in Kafouri, our leadership team, and our commitment to rebuilding Khartoum.`}>
   <Header slot="header" />
 
   <Banner title="About Us" />
@@ -24,8 +46,8 @@ const team = [
     <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
       <div class="overflow-hidden rounded-lg shadow-lg">
         <Image
-          src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80"
-          alt="Our team planning a project together"
+          src="https://images.unsplash.com/photo-1541888946425-d0fbb1861564?w=800&q=80"
+          alt="Bakinam Construction building and engineering operations in Khartoum"
           width={800}
           height={600}
           loading="lazy"
@@ -33,13 +55,29 @@ const team = [
         />
       </div>
       <div class="space-y-5">
-        <span class="text-topper font-bold uppercase tracking-widest text-accent">Our Story</span>
-        <h2 class="font-heading text-h2 font-bold uppercase text-text">Built on trust, driven by quality</h2>
+        <span class="text-topper font-bold uppercase tracking-widest text-accent">Our Journey</span>
+        <h2 class="font-heading text-h2 font-bold uppercase text-text">10 Years in Kafouri — Rebuilding Home & Community</h2>
         <p class="text-text-muted leading-relaxed">
-          What started as a one-person operation has grown into a trusted local team. For over 15 years, we've served homeowners and businesses with reliable, high-quality work — and we plan to keep doing just that for decades to come.
+          We broke ground on our very first home in September 2016 in Kafouri 3. Over the past decade, founder <strong>Bakinam Osman Rahama</strong> — supported by her German husband <strong>Christof Litznerski</strong> — has cultivated a deeply trusted, battle-tested network of suppliers, civil engineers, and master craftsmen across Khartoum.
         </p>
         <p class="text-text-muted leading-relaxed">
-          Every member of our crew is experienced, skilled, and background-checked. We treat your property with the same care we'd give our own, and we stand behind every job with a satisfaction guarantee.
+          We know firsthand how to navigate complex ground realities in Sudan: from municipal authorities and utility boards down to daily, respectful relationships with on-site workers.
+        </p>
+        <p class="text-text-muted leading-relaxed">
+          When the war brought damage, looting, and displacement, we saw the acute challenge faced by families — particularly those living abroad in the diaspora. Our mission is to be your trusted eyes and hands on the ground, rebuilding and securing your family home with European-level transparency, milestone accounting, and video walkthroughs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NGO & Social Responsibility Banner -->
+  <section class="border-y border-border bg-primary text-primary-fg py-14">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto max-w-3xl text-center space-y-4">
+        <span class="inline-block rounded-full bg-accent/20 px-4 py-1 text-xs font-bold uppercase tracking-widest text-accent">Community Impact</span>
+        <h2 class="font-heading text-2xl font-bold uppercase sm:text-3xl">Grounded in Social Responsibility: Drop of Water NGO</h2>
+        <p class="text-primary-fg/80 leading-relaxed text-sm sm:text-base">
+          Bakinam Osman Rahama is also the co-founder of the Sudanese humanitarian organization <a href="https://drop-of-water.org/" target="_blank" rel="noopener noreferrer" class="underline font-semibold text-white hover:text-accent">Drop of Water</a>, which has drilled 39 deep water wells across rural communities in Sudan, providing sustainable clean water to over 2 million people. That same spirit of accountability, social trust, and community stewardship guides every home we rebuild.
         </p>
       </div>
     </div>
@@ -49,24 +87,32 @@ const team = [
   <section class="bg-surface py-section">
     <div class="mx-auto max-w-site px-4 sm:px-6">
       <div class="mx-auto mb-10 max-w-2xl text-center">
-        <span class="text-topper font-bold uppercase tracking-widest text-accent">Our Team</span>
-        <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">Meet the crew</h2>
+        <span class="text-topper font-bold uppercase tracking-widest text-accent">Our Leadership</span>
+        <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">The Team Behind Your Project</h2>
+        <p class="mt-3 text-text-muted leading-relaxed">
+          A multidisciplinary team bringing together local Khartoum construction experience, civil engineering oversight, legal compliance, and international management standards.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {team.map(({ name, role, image }) => (
-          <div class="overflow-hidden rounded-lg bg-background shadow-sm">
-            <Image
-              src={image}
-              alt={name}
-              width={400}
-              height={400}
-              loading="lazy"
-              class="aspect-square w-full object-cover"
-            />
-            <div class="p-5">
-              <h3 class="font-heading text-lg font-semibold text-text">{name}</h3>
-              <p class="text-sm text-text-muted">{role}</p>
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {team.map(({ name, role, description, image }) => (
+          <div class="flex flex-col justify-between overflow-hidden rounded-lg bg-background shadow-sm border border-border">
+            <div class="overflow-hidden">
+              <Image
+                src={image}
+                alt={name}
+                width={400}
+                height={400}
+                loading="lazy"
+                class="aspect-square w-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-heading text-lg font-semibold text-text">{name}</h3>
+                <p class="text-xs font-medium text-accent mt-0.5">{role}</p>
+                <p class="text-xs text-text-muted mt-3 leading-relaxed">{description}</p>
+              </div>
             </div>
           </div>
         ))}

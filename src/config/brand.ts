@@ -14,11 +14,11 @@
 
 export const brand = {
   // ── Site Identity ──────────────────────────────────────────────────────────
-  name: 'bakinam Construction',
-  tagline: 'Professional service you can trust.',
+  name: 'Bakinam Construction',
+  tagline: 'Rebuilding Home. Restoring Peace of Mind.',
   description:
-    'A fast, mobile-first small-business website template built with Astro 6 and Tailwind v4. Fully customisable for any trade or service business.',
-  url: 'https://example.com',
+    'Your trusted partner for home rehabilitation, civil engineering, and secure construction in Khartoum. Serving local families and the diaspora with transparent remote project management.',
+  url: 'https://bakinamconstruction.com',
   locale: 'en_US',
 
   // ── Fonts ──────────────────────────────────────────────────────────────────

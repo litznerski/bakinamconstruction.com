@@ -13,12 +13,27 @@ interface Props {
 }
 
 const {
-  topper = 'Testimonials',
-  heading = 'What our customers say',
+  topper = 'Client Testimonials',
+  heading = 'Trusted by Homeowners in Khartoum & Abroad',
   reviews = [
-    { quote: 'They showed up on time, explained everything clearly, and finished the job faster than expected. Best service experience we\'ve had.', name: 'Sarah M.', location: 'Denver, CO', rating: 5 },
-    { quote: 'Honest pricing and top-notch work. I\'ve used them for three different projects now and they never disappoint.', name: 'James R.', location: 'Aurora, CO', rating: 5 },
-    { quote: 'Our emergency call was answered in minutes. They had the problem fixed before dinner. Truly dependable.', name: 'Linda K.', location: 'Lakewood, CO', rating: 5 },
+    {
+      quote: 'Being in Saudi Arabia while our family home in Kafouri was being restored felt overwhelming until we hired Bakinam. The weekly video walkthroughs, transparent invoices, and engineering care gave us complete peace of mind.',
+      name: 'Ahmed & Samia M.',
+      location: 'Riyadh / Kafouri 3',
+      rating: 5,
+    },
+    {
+      quote: 'Bakinam and her civil engineer conducted a thorough structural and electrical audit after our home was raided. They secured the compound, fixed our water lines, and brought our home back to life with honesty and precision.',
+      name: 'Dr. Tariq O.',
+      location: 'Khartoum North (Bahri)',
+      rating: 5,
+    },
+    {
+      quote: 'Finding trustworthy people in Khartoum today is difficult. Bakinam’s long-standing network and clear German-backed project communication saved us time, money, and immense stress. Highly recommended.',
+      name: 'Huda E.',
+      location: 'London / Khartoum',
+      rating: 5,
+    },
   ],
 } = Astro.props;
 ---
