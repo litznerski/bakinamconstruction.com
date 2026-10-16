@@ -11,13 +11,11 @@
  */
 
 export const client = {
-  name: 'Small Business Starter',
+  name: 'bakinam Construction',
   email: 'hello@example.com',
   phoneForTel: '555-867-5309',
   phoneFormatted: '(555) 867-5309',
-  /** Business / contractor license number. Displayed in the header and footer
-   *  as a trust signal. Set to an empty string to hide it. */
-  license: 'Lic# 123456',
+  license: '',
   address: {
     lineOne: '123 Main Street',
     lineTwo: 'Suite 100',

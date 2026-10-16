@@ -10,7 +10,7 @@ Hiring a contractor can feel overwhelming, but a few simple steps will help you 
 
 ## Check Credentials First
 
-Before signing anything, verify that the contractor is licensed, bonded, and insured in your state. A legitimate professional will have no problem showing proof. If they dodge the question, that's a red flag.
+Before signing anything, verify the contractor's track record, portfolio, and references. A legitimate professional will have no problem showing proof of their past work and qualifications. If they dodge the question, that's a red flag.
 
 ## Get Multiple Quotes
 

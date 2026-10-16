@@ -14,7 +14,7 @@
 
 export const brand = {
   // ── Site Identity ──────────────────────────────────────────────────────────
-  name: 'Small Business Starter',
+  name: 'bakinam Construction',
   tagline: 'Professional service you can trust.',
   description:
     'A fast, mobile-first small-business website template built with Astro 6 and Tailwind v4. Fully customisable for any trade or service business.',
@@ -33,29 +33,29 @@ export const brand = {
   // These values are written to CSS custom properties in theme.css.
   // Tailwind v4 @theme picks them up automatically.
   colors: {
-    primary:      '#1B3A6B',
+    primary: '#1B3A6B',
     primaryLight: '#2563EB',
-    primaryFg:    '#ffffff',
+    primaryFg: '#ffffff',
 
-    accent:       '#F97316',
-    accentFg:     '#ffffff',
+    accent: '#F97316',
+    accentFg: '#ffffff',
 
-    background:   '#ffffff',
-    surface:      '#F8FAFC',
-    border:       '#E2E8F0',
+    background: '#ffffff',
+    surface: '#F8FAFC',
+    border: '#E2E8F0',
 
-    text:         '#0F172A',
-    textMuted:    '#475569',
+    text: '#0F172A',
+    textMuted: '#475569',
 
-    dark:         '#0F172A',
-    darkSurface:  '#1E293B',
+    dark: '#0F172A',
+    darkSurface: '#1E293B',
   },
 
   // ── Border radius ──────────────────────────────────────────────────────────
   radius: {
-    sm:   '0.375rem',
-    md:   '0.625rem',
-    lg:   '1rem',
+    sm: '0.375rem',
+    md: '0.625rem',
+    lg: '1rem',
     full: '9999px',
   },
 } as const;

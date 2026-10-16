@@ -50,11 +50,6 @@ const currentPath = Astro.url.pathname;
 
     <!-- Desktop CTA + phone -->
     <div class="hidden items-center gap-4 lg:flex">
-      {client.license && (
-        <span class="rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-text-muted">
-          {client.license}
-        </span>
-      )}
       <a
         href={`tel:${client.phoneForTel}`}
         class="text-sm font-semibold text-text hover:text-primary transition-colors"
@@ -127,9 +122,6 @@ const currentPath = Astro.url.pathname;
       >
         Get a Free Quote
       </a>
-      {client.license && (
-        <p class="px-3 pt-1 text-xs text-text-muted">{client.license}</p>
-      )}
     </div>
   </div>
 </header>
