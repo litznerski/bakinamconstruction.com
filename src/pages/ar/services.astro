@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Banner from '../../components/Banner.astro';
+import CTA from '../../components/CTA.astro';
+import { client } from '../../data/client';
+import { arabicServices } from '../../data/arabicContent';
+
+const icons = [
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />',
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />',
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />',
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />',
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />',
+  '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />',
+];
+---
+
+<BaseLayout
+  lang="ar"
+  title="خدمات البناء وإعادة التأهيل | بكينام للمقاولات والهندسة"
+  description="استعرض خدمات بكينام للمقاولات في الخرطوم: الأعمال الإنشائية والخرسانية، الكهرباء والطاقة الشمسية، الحدادة الأمنية، التشطيبات والديكور، وإدارة مشاريع المغتربين."
+>
+  <Header slot="header" lang="ar" />
+
+  <Banner title="خدماتنا" />
+
+  <section class="py-section">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+        <span class="text-topper font-bold uppercase tracking-widest text-accent">حلول هندسية متكاملة</span>
+        <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">خدمات متخصصة في البناء وإعادة تأهيل المنازل</h2>
+        <p class="mt-3 text-text-muted leading-relaxed">
+          نجمع بين الخبرة الهندسية، والحرفية الميدانية، ومعايير إدارة المشاريع الأوروبية لمعاينة وتأمين وإعادة إعمار المنازل في الخرطوم.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        {arabicServices.map((service, i) => (
+          <div class="flex flex-col justify-between rounded-lg border border-border bg-background p-6 shadow-sm sm:p-8">
+            <div>
+              <div class="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" set:html={icons[i % icons.length]} />
+              </div>
+              <h3 class="font-heading text-xl font-bold uppercase text-text">{service.title}</h3>
+              <p class="mt-3 text-text-muted leading-relaxed">{service.description}</p>
+              
+              <div class="mt-5 border-t border-border pt-4">
+                <h4 class="text-xs font-semibold uppercase tracking-wider text-primary">أبرز بنود العمل:</h4>
+                <ul class="mt-2 space-y-1.5 text-sm text-text-muted" role="list">
+                  {service.trades.map((trade) => (
+                    <li class="flex items-center gap-2">
+                      <svg class="size-4 shrink-0 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{trade}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-2">
+              <a
+                href="/ar/contact"
+                class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-accent"
+              >
+                طلب استفسار عن هذه الخدمة
+                <svg class="size-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="هل ترغب في إعادة تأهيل وتجهيز بيتك في الخرطوم؟"
+    description="سواء كنت داخل السودان أو مقيماً في الخارج، تواصل مع فريقنا اليوم لتقييم الأضرار، وحصر الأعمال، والبدء في استعادة بيتك بأمان."
+    buttonText="احجز استشارة مع فريقنا"
+    buttonHref="/ar/contact"
+    callText={`اتصل الآن ${client.phoneFormatted}`}
+  />
+
+  <Footer slot="footer" lang="ar" />
+</BaseLayout>

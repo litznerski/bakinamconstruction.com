@@ -9,6 +9,7 @@ interface Props {
   topper?: string;
   heading?: string;
   description?: string;
+  learnMoreLabel?: string;
   services?: ServiceItem[];
 }
 
@@ -31,6 +32,7 @@ const {
   topper = 'Our Core Capabilities',
   heading = 'Clustered Construction & Rehabilitation Services',
   description = 'From immediate structural repairs to turnkey diaspora management, our integrated divisions deliver complete peace of mind in Khartoum.',
+  learnMoreLabel = 'Learn more',
   services = [
     {
       title: 'Structural & Civil Works',
@@ -79,7 +81,7 @@ const {
         <li>
           <a
             href={service.href || '/services'}
-            aria-label={`Learn more about ${service.title}`}
+            aria-label={`${learnMoreLabel} - ${service.title}`}
             class="group flex h-full cursor-pointer flex-col rounded-lg border border-border bg-background p-6 shadow-sm transition-shadow duration-200 hover:shadow-md"
           >
             <div class="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-fg">
@@ -88,9 +90,9 @@ const {
             <h3 class="font-heading text-h3 font-semibold text-text">{service.title}</h3>
             <p class="mt-2 flex-1 text-sm leading-relaxed text-text-muted">{service.description}</p>
             <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors group-hover:text-accent">
-              Learn more
-              <span class="sr-only"> about {service.title}</span>
-              <svg class="size-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              {learnMoreLabel}
+              <span class="sr-only"> - {service.title}</span>
+              <svg class="size-4 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </span>

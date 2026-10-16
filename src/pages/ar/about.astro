@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Banner from '../../components/Banner.astro';
+import CTA from '../../components/CTA.astro';
+import { Image } from 'astro:assets';
+import constructionWorkImg from '../../assets/images/about/construction_work.png';
+import { client } from '../../data/client';
+import { arabicTeam } from '../../data/arabicContent';
+---
+
+<BaseLayout
+  lang="ar"
+  title="من نحن | بكينام للمقاولات والهندسة"
+  description="تعرف على بكينام للمقاولات والهندسة — قصتنا في كافوري والخرطوم منذ ٢٠١٦، فريق القيادة الهندسية، والتزامنا بإعادة تأهيل بيوت الخرطوم."
+>
+  <Header slot="header" lang="ar" />
+
+  <Banner title="من نحن" />
+
+  <!-- Story -->
+  <section class="py-section">
+    <div class="mx-auto grid max-w-site grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:gap-14">
+      <div class="overflow-hidden rounded-lg shadow-lg">
+        <Image
+          src={constructionWorkImg}
+          alt="عمليات البناء والهندسة الميدانية في الخرطوم لدى بكينام للمقاولات"
+          width={800}
+          height={600}
+          loading="lazy"
+          class="size-full object-cover"
+        />
+      </div>
+      <div class="space-y-5">
+        <span class="text-topper font-bold uppercase tracking-widest text-accent">مسيرتنا وقصتنا</span>
+        <h2 class="font-heading text-h2 font-bold uppercase text-text">١٠ سنوات في كافوري — إعادة بناء البيوت والمجتمعات</h2>
+        <p class="text-text-muted leading-relaxed">
+          بدأنا تشييد أول منزل لنا في سبتمبر ٢٠١٦ في كافوري ٣. وعلى مدى عقد من الزمان، قامت المؤسسة <strong>بكينام عثمان رحمة</strong> — بدعم من زوجها الألماني <strong>كريستوف ليتزنرسكي</strong> — ببناء شبكة صلبة وموثوقة من الموردين والمهندسين المدنيين والحرفيين المهرة عبر كافة أنحاء الخرطوم.
+        </p>
+        <p class="text-text-muted leading-relaxed">
+          نمتلك دراية مباشرة وعميقة بالتعامل مع التحديات الميدانية في السودان: بدءاً من الجهات المحلية وهيئات المرافق، وحتى العلاقات اليومية المباشرة والمحترمة مع الفنيين والعمال في مواقع البناء.
+        </p>
+        <p class="text-text-muted leading-relaxed">
+          وعندما تركت الحرب آثارها وأضرارها على البيوت والممتلكات، أدركنا حجم المعاناة التي تواجهها الأسر، لا سيما المغتربين في الخارج. رسالتنا اليوم أن نكون عيونكم وأيديكم الأمينة على الأرض؛ نرمم ونؤمن بيوتكم بمعايير إدارة أوروبية، ومحاسبة مرحلية واضحة، وجولات مصورة بالفيديو أسبوعياً.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NGO & Social Responsibility Banner -->
+  <section class="border-y border-border bg-primary text-primary-fg py-14">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto max-w-3xl text-center space-y-4">
+        <span class="inline-block rounded-full bg-accent/20 px-4 py-1 text-xs font-bold uppercase tracking-widest text-accent">الأثر المجتمعي</span>
+        <h2 class="font-heading text-2xl font-bold uppercase text-primary-fg sm:text-3xl">مسؤولية مجتمعية راسخة: منظمة قطرة ماء</h2>
+        <p class="text-primary-fg/80 leading-relaxed text-sm sm:text-base">
+          بكينام عثمان رحمة هي أيضاً شريكة في تأسيس المنظمة الإنسانية السودانية <a href="https://drop-of-water.org/" target="_blank" rel="noopener noreferrer" class="underline font-semibold text-white hover:text-accent">قطرة ماء (Drop of Water)</a>، التي حفرت ٣٩ بئراً ارتوازية عميقة للمياه في المناطق الريفية في السودان، موفرة مياهاً صالحة للشرب لأكثر من ٢ مليون مواطن. ذات روح المسؤولية والأمانة والخدمة المجتمعية هي ما نقود به إعادة بناء كل بيت.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="bg-surface py-section">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="mx-auto mb-10 max-w-2xl text-center">
+        <span class="text-topper font-bold uppercase tracking-widest text-accent">فريق القيادة</span>
+        <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">الفريق المسؤول عن نجاح مشروعكم</h2>
+        <p class="mt-3 text-text-muted leading-relaxed">
+          فريق متكامل يجمع بين الخبرة الميدانية العميقة في الخرطوم، والإشراف الهندسي المدني، والامتثال القانوني، والمعايير الإدارية الدولية.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {arabicTeam.map(({ name, role, description, image }) => (
+          <div class="flex flex-col justify-between overflow-hidden rounded-lg bg-background shadow-sm border border-border">
+            <div class="overflow-hidden">
+              <Image
+                src={image}
+                alt={name}
+                width={400}
+                height={400}
+                loading="lazy"
+                class="aspect-square w-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-heading text-lg font-semibold text-text">{name}</h3>
+                <p class="text-xs font-medium text-accent mt-0.5">{role}</p>
+                <p class="text-xs text-text-muted mt-3 leading-relaxed">{description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="هل ترغب في إعادة تأهيل وتجهيز بيتك في الخرطوم؟"
+    description="سواء كنت داخل السودان أو مقيماً في الخارج، تواصل مع فريقنا اليوم لتقييم الأضرار، وحصر الأعمال، والبدء في استعادة بيتك بأمان."
+    buttonText="احجز استشارة مع فريقنا"
+    buttonHref="/ar/contact"
+    callText={`اتصل الآن ${client.phoneFormatted}`}
+  />
+
+  <Footer slot="footer" lang="ar" />
+</BaseLayout>

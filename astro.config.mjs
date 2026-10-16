@@ -10,6 +10,14 @@ export default defineConfig({
 
   integrations: [sitemap(), robotsTxt()],
 
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ar'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   fonts: [
     {
       provider: fontProviders.google(),
@@ -23,6 +31,13 @@ export default defineConfig({
       name: 'Inter',
       cssVariable: '--font-body',
       weights: ['400', '500', '700'],
+      styles: ['normal'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Cairo',
+      cssVariable: '--font-arabic',
+      weights: ['400', '600', '700'],
       styles: ['normal'],
     },
   ],

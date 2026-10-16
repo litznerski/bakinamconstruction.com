@@ -1,36 +1,48 @@
 ---
 import { brand } from '../config/brand';
 import { client } from '../data/client';
+import { getLangFromUrl, getLocalizedPath, useTranslations } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
+import LanguagePicker from './LanguagePicker.astro';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang: propLang } = Astro.props;
+const lang: Locale = propLang || (Astro.currentLocale as Locale) || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRtl = lang === 'ar';
 
 const nav = [
-  { label: 'Home',     href: '/' },
-  { label: 'About',    href: '/about' },
-  { label: 'Services', href: '/services' },
-  { label: 'Reviews',  href: '/reviews' },
-  { label: 'Blog',     href: '/blog' },
-  { label: 'Contact',  href: '/contact' },
+  { label: t('nav.home'),     href: getLocalizedPath('/', lang) },
+  { label: t('nav.about'),    href: getLocalizedPath('/about', lang) },
+  { label: t('nav.services'), href: getLocalizedPath('/services', lang) },
+  { label: t('nav.reviews'),  href: getLocalizedPath('/reviews', lang) },
+  { label: t('nav.contact'),  href: getLocalizedPath('/contact', lang) },
 ];
 
 const currentPath = Astro.url.pathname;
+const homeHref = getLocalizedPath('/', lang);
+const contactHref = getLocalizedPath('/contact', lang);
 ---
 
 <header
   class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm"
-  transition:persist
 >
   <div class="mx-auto flex max-w-site items-center justify-between px-4 py-3 sm:px-6">
     <!-- Logo -->
     <a
-      href="/"
+      href={homeHref}
       class="font-heading text-xl font-bold uppercase tracking-wide text-primary transition-opacity hover:opacity-80"
     >
-      {brand.name}
+      {isRtl ? 'بكينام للمقاولات' : brand.name}
     </a>
 
     <!-- Desktop nav -->
     <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
       {nav.map(({ label, href }) => {
-        const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
+        const isActive = currentPath === href || (href !== homeHref && currentPath.startsWith(href));
         return (
           <a
             href={href}
@@ -48,8 +60,10 @@ const currentPath = Astro.url.pathname;
       })}
     </nav>
 
-    <!-- Desktop CTA + phone -->
-    <div class="hidden items-center gap-4 lg:flex">
+    <!-- Desktop CTA + phone + Language Picker -->
+    <div class="hidden items-center gap-3.5 lg:flex">
+      <LanguagePicker />
+
       <a
         href={`tel:${client.phoneForTel}`}
         class="text-sm font-semibold text-text hover:text-primary transition-colors"
@@ -57,10 +71,10 @@ const currentPath = Astro.url.pathname;
         {client.phoneFormatted}
       </a>
       <a
-        href="/contact"
+        href={contactHref}
         class="inline-flex min-h-[44px] items-center rounded-md bg-accent px-5 py-2.5 text-sm font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       >
-        Contact Us
+        {t('nav.contactBtn')}
       </a>
     </div>
 
@@ -89,7 +103,7 @@ const currentPath = Astro.url.pathname;
   >
     <nav class="flex flex-col gap-1" aria-label="Mobile navigation">
       {nav.map(({ label, href }) => {
-        const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
+        const isActive = currentPath === href || (href !== homeHref && currentPath.startsWith(href));
         return (
           <a
             href={href}
@@ -107,6 +121,11 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="mt-4 flex flex-col gap-3 border-t border-border pt-4">
+      <div class="flex items-center justify-between px-2">
+        <span class="text-xs font-semibold uppercase tracking-wider text-text-muted">Language / اللغة</span>
+        <LanguagePicker />
+      </div>
+
       <a
         href={`tel:${client.phoneForTel}`}
         class="flex items-center gap-2 px-3 py-2 text-base font-semibold text-text"
@@ -117,32 +136,24 @@ const currentPath = Astro.url.pathname;
         {client.phoneFormatted}
       </a>
       <a
-        href="/contact"
+        href={contactHref}
         class="flex min-h-[44px] items-center justify-center rounded-md bg-accent px-5 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90"
       >
-        Contact Us
+        {t('nav.contactBtn')}
       </a>
     </div>
   </div>
 </header>
 
 <script>
-  (() => {
-    const headerEl = document.querySelector('header');
-    const btnEl = document.getElementById('menu-toggle');
-    const menuEl = document.getElementById('mobile-menu');
-    const iconOpenEl = document.getElementById('menu-icon-open');
-    const iconCloseEl = document.getElementById('menu-icon-close');
+  function initHeader() {
+    const header = document.querySelector('header');
+    const btn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
 
-    if (!headerEl || !btnEl || !menuEl || !iconOpenEl || !iconCloseEl) return;
-
-    const header = /** @type {HTMLElement} */ (headerEl);
-    const btn = /** @type {HTMLButtonElement} */ (btnEl);
-    const menu = /** @type {HTMLElement} */ (menuEl);
-    const iconOpen = /** @type {HTMLElement} */ (iconOpenEl);
-    const iconClose = /** @type {HTMLElement} */ (iconCloseEl);
-    if (header.dataset.menuInit === 'true') return;
-    header.dataset.menuInit = 'true';
+    if (!header || !btn || !menu || !iconOpen || !iconClose) return;
 
     const activeClasses = ['bg-primary/10', 'text-primary'];
     const inactiveDesktop = ['text-text-muted', 'hover:text-text'];
@@ -151,7 +162,6 @@ const currentPath = Astro.url.pathname;
     const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
 
     const setMenuOpen = (nextOpen: boolean) => {
-      // Hard stop: hamburger/drawer behavior is mobile-only.
       if (isDesktop()) nextOpen = false;
       btn.setAttribute('aria-expanded', String(nextOpen));
       menu.classList.toggle('hidden', !nextOpen);
@@ -161,12 +171,14 @@ const currentPath = Astro.url.pathname;
 
     function syncActiveLinks() {
       const path = window.location.pathname;
-      const desktopLinks = header.querySelectorAll('nav[aria-label="Primary navigation"] a');
-      const mobileLinks = header.querySelectorAll('#mobile-menu nav a');
+      const desktopLinks = header.querySelectorAll<HTMLAnchorElement>('nav[aria-label="Primary navigation"] a');
+      const mobileLinks = header.querySelectorAll<HTMLAnchorElement>('#mobile-menu nav a');
+      const isHomePath = (h: string) => h === '/' || h === '/ar' || h === '/ar/';
 
       desktopLinks.forEach((link) => {
         const href = link.getAttribute('href') || '';
-        const isActive = href === path || (href !== '/' && path.startsWith(href));
+        const isHome = isHomePath(href);
+        const isActive = href === path || (!isHome && path.startsWith(href));
         link.classList.toggle(activeClasses[0], isActive);
         link.classList.toggle(activeClasses[1], isActive);
         link.classList.toggle(inactiveDesktop[0], !isActive);
@@ -177,7 +189,8 @@ const currentPath = Astro.url.pathname;
 
       mobileLinks.forEach((link) => {
         const href = link.getAttribute('href') || '';
-        const isActive = href === path || (href !== '/' && path.startsWith(href));
+        const isHome = isHomePath(href);
+        const isActive = href === path || (!isHome && path.startsWith(href));
         link.classList.toggle(activeClasses[0], isActive);
         link.classList.toggle(activeClasses[1], isActive);
         link.classList.toggle(inactiveMobile[0], !isActive);
@@ -188,28 +201,23 @@ const currentPath = Astro.url.pathname;
       });
     }
 
-    btn.addEventListener('click', () => {
+    btn.onclick = () => {
       if (isDesktop()) return;
       const isOpen = btn.getAttribute('aria-expanded') === 'true';
       setMenuOpen(!isOpen);
-    });
+    };
 
-    menu.addEventListener('click', (event) => {
+    menu.onclick = (event) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
       if (target.closest('a[href]')) setMenuOpen(false);
-    });
+    };
 
-    document.addEventListener('astro:before-preparation', () => setMenuOpen(false));
-    document.addEventListener('astro:after-swap', () => {
-      setMenuOpen(false);
-      syncActiveLinks();
-    });
-
-    // Ensure mobile drawer can't stay open if viewport changes to desktop.
-    window.addEventListener('resize', () => setMenuOpen(false));
+    window.onresize = () => setMenuOpen(false);
 
     setMenuOpen(false);
     syncActiveLinks();
-  })();
+  }
+
+  document.addEventListener('astro:page-load', initHeader);
 </script>

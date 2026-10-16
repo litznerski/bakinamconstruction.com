@@ -1,41 +1,48 @@
 ---
 import { brand } from '../config/brand';
 import { client } from '../data/client';
+import { getLangFromUrl, getLocalizedPath, useTranslations } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
 
+interface Props {
+  lang?: Locale;
+}
+
+const { lang: propLang } = Astro.props;
+const lang: Locale = propLang || (Astro.currentLocale as Locale) || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRtl = lang === 'ar';
 const year = new Date().getFullYear();
 
 const navCols = [
   {
-    title: 'Company',
+    title: t('footer.company'),
     links: [
-      { label: 'About',    href: '/about' },
-      { label: 'Services', href: '/services' },
-      { label: 'Reviews',  href: '/reviews' },
-      { label: 'Blog',     href: '/blog' },
+      { label: t('nav.about'),    href: getLocalizedPath('/about', lang) },
+      { label: t('nav.services'), href: getLocalizedPath('/services', lang) },
+      { label: t('nav.reviews'),  href: getLocalizedPath('/reviews', lang) },
     ],
   },
   {
-    title: 'Support',
+    title: t('footer.support'),
     links: [
-      { label: 'Contact',  href: '/contact' },
-      { label: 'Privacy',  href: '/privacy' },
-      { label: 'Terms',    href: '/terms' },
+      { label: t('nav.contact'),  href: getLocalizedPath('/contact', lang) },
     ],
   },
 ];
 ---
 
-<footer class="bg-dark text-surface/80" transition:persist>
+<footer class="bg-dark text-surface/80">
   <div class="mx-auto max-w-site px-4 py-12 sm:px-6 lg:py-16">
     <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
 
       <!-- Brand -->
       <div class="sm:col-span-2 lg:col-span-1">
-        <a href="/" class="font-heading text-lg font-bold uppercase tracking-wide text-white">
-          {brand.name}
+        <a href={getLocalizedPath('/', lang)} class="font-heading text-lg font-bold uppercase tracking-wide text-white">
+          {isRtl ? 'بكينام للمقاولات' : brand.name}
         </a>
         <p class="mt-3 max-w-xs text-sm leading-relaxed">
-          {brand.tagline}
+          {t('site.tagline')}
         </p>
 
         <!-- Social links -->
@@ -78,7 +85,7 @@ const navCols = [
 
       <!-- Contact info -->
       <div>
-        <h3 class="text-sm font-bold uppercase tracking-wider text-white">Contact</h3>
+        <h3 class="text-sm font-bold uppercase tracking-wider text-white">{t('nav.contact')}</h3>
         <ul class="mt-3 space-y-2 text-sm">
           <li>
             <a href={`tel:${client.phoneForTel}`} class="transition-colors hover:text-white">
@@ -102,7 +109,7 @@ const navCols = [
 
     <!-- Copyright -->
     <div class="mt-10 border-t border-surface/10 pt-6 text-center text-sm">
-      &copy; {year} {brand.name}. All rights reserved.
+      &copy; {year} {isRtl ? 'بكينام للمقاولات' : brand.name}. {t('footer.rights')}
     </div>
   </div>
 </footer>

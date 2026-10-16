@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import Services from '../../components/Services.astro';
+import About from '../../components/About.astro';
+import Reviews from '../../components/Reviews.astro';
+import Gallery from '../../components/Gallery.astro';
+import CTA from '../../components/CTA.astro';
+import { client } from '../../data/client';
+import { arabicServices, arabicReviews } from '../../data/arabicContent';
+---
+
+<BaseLayout
+  lang="ar"
+  title="بكينام للمقاولات والهندسة | إعادة تأهيل وبناء المنازل في الخرطوم"
+  description="شريككم الموثوق لإعادة تأهيل وبناء وتأمين المنازل في الخرطوم وكافوري. نخدم العائلات في السودان والمغتربين بإشراف هندسي وتقارير فيديو دورية وشفافية كاملة."
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'بكينام للمقاولات والهندسة',
+    telephone: client.phoneForTel,
+    email: client.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: client.address.lineOne,
+      addressLocality: client.address.city,
+      addressRegion: client.address.state,
+      postalCode: client.address.zip,
+      addressCountry: client.address.country,
+    },
+    url: `${client.domain}/ar`,
+  }}
+>
+  <Header slot="header" lang="ar" />
+
+  <Hero
+    topper="إعادة تأهيل وبناء وتأمين المنازل"
+    heading="نعيد بناء بيتك بأمان واطمئنان في الخرطوم"
+    description="شريككم الموثوق لإعادة تأهيل وبناء وتأمين المنازل في الخرطوم. نخدم العائلات في السودان والمغتربين بإشراف هندسي وتقارير فيديو دورية وشفافية كاملة."
+    ctaLabel="استشر فريقنا الهندسي"
+    ctaHref="/ar/contact"
+    secondaryLabel="استعرض خدماتنا"
+    secondaryHref="/ar/services"
+    callText={`اتصل الآن ${client.phoneFormatted}`}
+  />
+
+  <Services
+    topper="مجالات اختصاصنا"
+    heading="خدمات متكاملة لإعادة تأهيل وبناء المنازل"
+    description="من المعالجات الإنشائية العاجلة إلى التشطيب النهائي وإدارة مشاريع المغتربين، نوفر لكم راحة البال التامة على أرض الواقع في الخرطوم."
+    learnMoreLabel="طلب استفسار"
+    services={arabicServices.map((s) => ({
+      title: s.shortTitle,
+      description: s.description,
+      href: '/ar/services',
+    }))}
+  />
+
+  <About
+    topper="عن بكينام للمقاولات"
+    heading="نبني في الخرطوم منذ ٢٠١٦ — عيونكم وأيديكم الأمينة على الأرض"
+    body={[
+      'انطلقت مسيرتنا بوضع حجر الأساس لبيتنا الأول في كافوري ٣ في سبتمبر ٢٠١٦. على مدار عقد كامل، نجحت المؤسسة بكينام عثمان رحمة — بدعم من زوجها الألماني كريستوف ليتزنرسكي — في بناء شبكة صلبة وموثوقة من الموردين، المهندسين المدنيين، والحرفيين المهرة عبر الخرطوم.',
+      'نجمع بين الخبرة العميقة بالواقع الميداني في السودان والمعايير الأوروبية في إدارة المشاريع، الشفافية المالية الصارمة، والتقارير الأسبوعية الموثقة بالفيديو خطوة بخطوة.',
+    ]}
+    benefits={[
+      'خبرة ميدانية وشبكة موردين معتمدة في كافوري والخرطوم منذ ٢٠١٦',
+      'خدمة مخصصة للمغتربين مع تقارير فيديو أسبوعية ومحاسبة مرحلية شفافة',
+      'مسؤولية مجتمعية راسخة: مشاركة في تأسيس منظمة قطرة ماء (سقيا أكثر من ٢ مليون مواطن)',
+    ]}
+    ctaLabel="اقرأ قصتنا كاملة"
+    ctaHref="/ar/about"
+    imageAlt="فريق بكينام للمقاولات أثناء تنفيذ مشروع بناء في الخرطوم"
+  />
+
+  <Reviews
+    topper="شهادات عملائنا"
+    heading="ثقة العائلات في الخرطوم والمغتربين في الخارج"
+    reviews={arabicReviews.slice(0, 3)}
+  />
+
+  <Gallery
+    topper="معرض أعمالنا"
+    heading="مشاريع من أرض الواقع"
+    description="شاهد جودة التنفيذ والاهتمام بأدق التفاصيل الهندسية والمعمارية في كل موقع."
+    ctaLabel="استعرض كافة الخدمات"
+    ctaHref="/ar/services"
+  />
+
+  <CTA
+    title="هل ترغب في إعادة تأهيل وتجهيز بيتك في الخرطوم؟"
+    description="سواء كنت داخل السودان أو مقيماً في الخارج، تواصل مع فريقنا اليوم لتقييم الأضرار، وحصر الأعمال، والبدء في استعادة بيتك بأمان."
+    buttonText="احجز استشارة مع فريقنا"
+    buttonHref="/ar/contact"
+    callText={`اتصل الآن ${client.phoneFormatted}`}
+  />
+
+  <Footer slot="footer" lang="ar" />
+</BaseLayout>

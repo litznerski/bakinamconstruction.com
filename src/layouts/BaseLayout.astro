@@ -11,12 +11,15 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import { brand } from '../config/brand';
 import { client } from '../data/client';
+import { getLangFromUrl, getLocalizedPath } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
   schema?: Record<string, unknown>;
+  lang?: Locale;
 }
 
 const {
@@ -26,17 +29,27 @@ const {
   schema,
 } = Astro.props;
 
+const lang: Locale = Astro.props.lang || (Astro.currentLocale as Locale) || getLangFromUrl(Astro.url);
+const isRtl = lang === 'ar';
+const dir = isRtl ? 'rtl' : 'ltr';
+
 const pageTitle = title === brand.name ? title : `${title} — ${brand.name}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
+const enURL = new URL(getLocalizedPath(Astro.url.pathname, 'en'), Astro.site ?? brand.url);
+const arURL = new URL(getLocalizedPath(Astro.url.pathname, 'ar'), Astro.site ?? brand.url);
 ---
 
-<html lang={brand.locale.split('_')[0]} class="scroll-smooth">
+<html lang={lang} dir={dir} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="ar" href={arURL} />
+    <link rel="alternate" hreflang="x-default" href={enURL} />
+
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
 
@@ -46,7 +59,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
     <meta property="og:title"       content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image"       content={image} />
-    <meta property="og:locale"      content={brand.locale} />
+    <meta property="og:locale"      content={isRtl ? 'ar_SD' : 'en_US'} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
@@ -75,6 +88,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
           document.documentElement.classList.add('dark-mode');
         }
       })();
+      document.addEventListener('astro:before-swap', function(e) {
+        var newDoc = e.newDocument;
+        if (!newDoc) return;
+        var newDir = newDoc.documentElement.getAttribute('dir');
+        var newLang = newDoc.documentElement.getAttribute('lang');
+        if (newDir) document.documentElement.setAttribute('dir', newDir);
+        if (newLang) document.documentElement.setAttribute('lang', newLang);
+      });
     </script>
 
     <slot name="head" />
