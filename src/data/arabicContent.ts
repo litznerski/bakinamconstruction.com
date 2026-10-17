@@ -1,6 +1,7 @@
 import bakinamImg from '../assets/images/team/bakinam.jpeg';
 import christofImg from '../assets/images/team/christof.jpeg';
 import musabImg from '../assets/images/team/musab.jpeg';
+import salahImg from '../assets/images/team/salah.jpeg';
 
 export const arabicServices = [
   {
@@ -141,10 +142,10 @@ export const arabicTeam = [
     role: 'رئيس القسم الهندسي والإشراف الميداني',
     description:
       'يقود فحوصات الأضرار الإنشائية، واختبارات سلامة الخرسانة، ومعالجة التصدعات، ومراقبة الجودة الفنية في كافة مواقع المشاريع.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+    image: salahImg,
   },
   {
-    name: 'مصعب',
+    name: 'مصعب   يوسف الزهري',
     role: 'المستشار القانوني والتنظيمي',
     description:
       'يشرف على تدقيق مستندات الملكية وشهادات البحث، والتراخيص المحلية، والتنسيق لإعادة توصيل الخدمات العامة، وصياغة العقود.',
