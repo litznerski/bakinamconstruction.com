@@ -95,15 +95,15 @@ import { client } from '../../../data/client';
       <aside class="space-y-8 lg:col-span-2">
         <div>
           <h3 class="font-heading text-lg font-semibold text-text">الاتصال المباشر</h3>
-          <a href={`tel:${client.phoneForTel}`} dir="ltr" class="mt-1 block text-primary-light font-medium transition-colors hover:text-primary text-right">
-            {client.phoneFormatted}
+          <a href={`tel:${client.phoneForTel}`} dir="ltr" class="mt-1 inline-block text-primary-light font-medium transition-colors hover:text-primary">
+            <bdi dir="ltr">{client.phoneFormatted}</bdi>
           </a>
         </div>
 
         <div>
           <h3 class="font-heading text-lg font-semibold text-text">البريد الإلكتروني</h3>
-          <a href={`mailto:${client.email}`} dir="ltr" class="mt-1 block text-primary-light font-medium transition-colors hover:text-primary text-right">
-            {client.email}
+          <a href={`mailto:${client.email}`} dir="ltr" class="mt-1 inline-block text-primary-light font-medium transition-colors hover:text-primary">
+            <bdi dir="ltr">{client.email}</bdi>
           </a>
         </div>
 
