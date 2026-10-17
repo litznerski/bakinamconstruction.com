@@ -17,7 +17,7 @@ export const brand = {
   name: 'Bakinam Construction',
   tagline: 'Rebuilding Home. Restoring Peace of Mind.',
   description:
-    'Your trusted partner for home rehabilitation, civil engineering, and secure construction in Khartoum. Serving local families and the diaspora with transparent remote project management.',
+    'Your trusted partner for home rehabilitation, civil engineering, and secure construction in Khartoum. Serving families - local and abroad - with transparent project management.',
   url: 'https://bakinamconstruction.com',
   locale: 'en_US',
 

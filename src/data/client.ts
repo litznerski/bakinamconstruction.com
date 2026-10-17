@@ -14,7 +14,7 @@ export const client = {
   name: 'Bakinam Construction',
   email: 'contact@bakinamconstruction.com',
   phoneForTel: '+249123009572',
-  phoneFormatted: '+249 12 300 9572',
+  phoneFormatted: '\u200E+249 12 300 9572',
   license: '',
   address: {
     lineOne: 'Kafouri Block 3',

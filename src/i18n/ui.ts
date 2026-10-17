@@ -12,7 +12,7 @@ export const ui = {
     'site.title': 'Bakinam Construction',
     'site.tagline': 'Rebuilding Home. Restoring Peace of Mind.',
     'site.description':
-      'Your trusted partner for home rehabilitation, civil engineering, and secure construction in Khartoum. Serving local families and the diaspora with transparent remote project management.',
+      'Your trusted partner for home rehabilitation, civil engineering, and secure construction in Khartoum. Serving families - local and abroad - with transparent project management.',
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.services': 'Services',
@@ -68,7 +68,7 @@ export const ui = {
     'site.title': 'بكينام للمقاولات والهندسة',
     'site.tagline': 'نعيد بناء بيتك بأمان واطمئنان في الخرطوم',
     'site.description':
-      'شريككم الموثوق لإعادة تأهيل وبناء وتأمين المنازل في الخرطوم. نخدم العائلات في السودان والمغتربين بإشراف هندسي وتقارير فيديو دورية وشفافية كاملة.',
+      'شريككم الموثوق لإعادة تأهيل وبناء وتأمين المنازل في الخرطوم. نخدم العائلات — في الداخل والخارج — بإدارة مشاريع تتسم بالشفافية الكاملة.',
     'nav.home': 'الرئيسية',
     'nav.about': 'من نحن',
     'nav.services': 'خدماتنا',
