@@ -2,6 +2,9 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "bakinamconstruction-com",
   "compatibility_date": "2026-03-01",
+  "observability": {
+    "enabled": false
+  },
   "assets": {
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
