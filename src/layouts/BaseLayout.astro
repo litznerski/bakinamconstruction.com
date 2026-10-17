@@ -33,7 +33,7 @@ const lang: Locale = Astro.props.lang || (Astro.currentLocale as Locale) || getL
 const isRtl = lang === 'ar';
 const dir = isRtl ? 'rtl' : 'ltr';
 
-const pageTitle = title === brand.name ? title : `${title} — ${brand.name}`;
+const pageTitle = title === brand.name ? title : `${title} - ${brand.name}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? brand.url);
 const enURL = new URL(getLocalizedPath(Astro.url.pathname, 'en'), Astro.site ?? brand.url);
 const arURL = new URL(getLocalizedPath(Astro.url.pathname, 'ar'), Astro.site ?? brand.url);

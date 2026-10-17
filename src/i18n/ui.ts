@@ -39,7 +39,7 @@ export const ui = {
 
     // About section
     'about.topper': 'Who We Are',
-    'about.heading': 'Building in Khartoum Since 2016 — Your Eyes & Hands on the Ground',
+    'about.heading': 'Building in Khartoum Since 2016 - Your Eyes & Hands on the Ground',
     'about.p1':
       'Founded by Bakinam Osman Rahama, who began building in Kafouri 3 in September 2016, we have spent a decade cultivating a premier network of trusted suppliers, civil engineers, and master craftsmen across Khartoum.',
     'about.p2':
@@ -95,7 +95,7 @@ export const ui = {
 
     // About section
     'about.topper': 'عن بكينام للمقاولات',
-    'about.heading': 'نبني في الخرطوم منذ ٢٠١٦ — عيونكم وأيديكم الأمينة على الأرض',
+    'about.heading': 'نبني في الخرطوم منذ ٢٠١٦ - عيونكم وأيديكم الأمينة على الأرض',
     'about.p1':
       'انطلقت مسيرتنا بوضع حجر الأساس لبيتنا الأول في كافوري ٣ في سبتمبر ٢٠١٦. على مدار عقد كامل، نجحت المؤسسة بكينام عثمان رحمة — بدعم من زوجها الألماني كريستوف ليتزنرسكي — في بناء شبكة صلبة وموثوقة من الموردين، المهندسين المدنيين، والحرفيين المهرة.',
     'about.p2':
