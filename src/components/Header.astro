@@ -4,6 +4,7 @@ import { client } from '../data/client';
 import { getLangFromUrl, getLocalizedPath, useTranslations } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
 import LanguagePicker from './LanguagePicker.astro';
+import BrandLogo from './BrandLogo.astro';
 
 interface Props {
   lang?: Locale;
@@ -34,9 +35,10 @@ const contactHref = getLocalizedPath('/contact', lang);
     <!-- Logo -->
     <a
       href={homeHref}
-      class="font-heading text-xl font-bold uppercase tracking-wide text-primary transition-opacity hover:opacity-80"
+      class="inline-flex items-center transition-opacity hover:opacity-85"
+      aria-label={brand.name}
     >
-      {isRtl ? 'بكينام للمقاولات' : brand.name}
+      <BrandLogo />
     </a>
 
     <!-- Desktop nav -->

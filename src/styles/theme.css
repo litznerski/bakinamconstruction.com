@@ -58,4 +58,5 @@
   --font-heading: var(--font-display), 'Oswald', 'Cairo', ui-sans-serif, system-ui, sans-serif;
   --font-body:    var(--font-body), 'Inter', 'Cairo', ui-sans-serif, system-ui, sans-serif;
   --font-arabic:  var(--font-arabic), 'Cairo', ui-sans-serif, system-ui, sans-serif;
+  --font-logo:    var(--font-logo), 'Mulish', ui-sans-serif, system-ui, sans-serif;
 }

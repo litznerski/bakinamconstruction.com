@@ -33,6 +33,14 @@
     font-family: var(--font-arabic);
   }
 
+  .font-logo {
+    font-family: var(--font-logo), 'Mulish', sans-serif !important;
+  }
+
+  .font-brand-display {
+    font-family: var(--font-display), 'Oswald', sans-serif !important;
+  }
+
   .dark body,
   body.dark-mode {
     background-color: var(--color-dark);

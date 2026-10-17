@@ -14,7 +14,7 @@
 
 export const brand = {
   // ── Site Identity ──────────────────────────────────────────────────────────
-  name: 'Bakinam Construction',
+  name: 'bakinam Construction',
   tagline: 'Rebuilding Home. Restoring Peace of Mind.',
   description:
     'Your trusted partner for home rehabilitation, civil engineering, and secure construction in Khartoum. Serving families - local and abroad - with transparent project management.',
