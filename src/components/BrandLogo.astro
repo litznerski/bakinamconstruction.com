@@ -10,28 +10,43 @@ const { isFooter = false, class: className = '', size = 'normal' } = Astro.props
 const bakinamSize = size === 'large' ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl';
 const constructionSize = size === 'large' ? 'text-base sm:text-lg' : 'text-sm sm:text-base';
 const constructionColor = isFooter ? 'text-white' : 'text-primary';
+const imgSize = size === 'large' ? 'size-10 sm:size-11' : 'size-8 sm:size-9';
 ---
 
 <span
   class:list={[
-    'inline-flex items-baseline gap-1.5 leading-none select-none',
+    'inline-flex items-center gap-2.5 leading-none select-none',
     className,
   ]}
   dir="ltr"
 >
-  <span
+  <img
+    src="/favicon.png"
+    alt="Bakinam Construction Logo"
+    width="36"
+    height="36"
     class:list={[
-      'font-logo font-bold lowercase tracking-normal text-accent',
-      bakinamSize,
+      'shrink-0 rounded-full bg-white object-contain shadow-xs',
+      imgSize,
     ]}
-    style="font-family: var(--font-logo), 'Mulish', sans-serif;"
-  >bakinam</span>
-  <span
-    class:list={[
-      'font-brand-display font-bold uppercase tracking-wider',
-      constructionColor,
-      constructionSize,
-    ]}
-    style="font-family: var(--font-display), 'Oswald', sans-serif;"
-  >CONSTRUCTION</span>
+    loading="eager"
+    decoding="async"
+  />
+  <span class="inline-flex items-baseline gap-1.5">
+    <span
+      class:list={[
+        'font-logo font-bold lowercase tracking-normal text-accent',
+        bakinamSize,
+      ]}
+      style="font-family: var(--font-logo), 'Mulish', sans-serif;"
+    >bakinam</span>
+    <span
+      class:list={[
+        'font-brand-display font-bold uppercase tracking-wider',
+        constructionColor,
+        constructionSize,
+      ]}
+      style="font-family: var(--font-display), 'Oswald', sans-serif;"
+    >CONSTRUCTION</span>
+  </span>
 </span>
