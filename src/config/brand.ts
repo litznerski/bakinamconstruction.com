@@ -21,6 +21,10 @@ export const brand = {
   url: 'https://bakinamconstruction.com',
   locale: 'en_US',
 
+  // ── Feature Flags ──────────────────────────────────────────────────────────
+  /** Set to false to hide all review sections, pages, and nav links site-wide */
+  reviews: false,
+
   // ── Fonts ──────────────────────────────────────────────────────────────────
   // To swap fonts: change the `name` values here AND update astro.config.mjs
   // to match (both must stay in sync so Astro can optimise the correct files).

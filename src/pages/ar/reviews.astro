@@ -1,11 +1,16 @@
-  ---
+---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Banner from '../../components/Banner.astro';
 import CTA from '../../components/CTA.astro';
+import { brand } from '../../config/brand';
 import { client } from '../../data/client';
 import { arabicReviews } from '../../data/arabicContent';
+
+if (!brand.reviews) {
+  return Astro.redirect('/ar');
+}
 ---
 
 <BaseLayout

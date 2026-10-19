@@ -21,7 +21,7 @@ const navCols = [
     links: [
       { label: t('nav.about'),    href: getLocalizedPath('/about', lang) },
       { label: t('nav.services'), href: getLocalizedPath('/services', lang) },
-      { label: t('nav.reviews'),  href: getLocalizedPath('/reviews', lang) },
+      ...(brand.reviews ? [{ label: t('nav.reviews'),  href: getLocalizedPath('/reviews', lang) }] : []),
     ],
   },
   {

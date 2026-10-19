@@ -7,6 +7,10 @@ import CTA from '../components/CTA.astro';
 import { brand } from '../config/brand';
 import { client } from '../data/client';
 
+if (!brand.reviews) {
+  return Astro.redirect('/');
+}
+
 const reviews = [
   {
     quote: 'Being in Saudi Arabia while our family home in Kafouri was being restored felt overwhelming until we hired Bakinam. The weekly video walkthroughs, transparent invoices, and engineering care gave us complete peace of mind.',

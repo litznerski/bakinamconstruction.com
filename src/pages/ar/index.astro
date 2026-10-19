@@ -8,6 +8,7 @@ import About from '../../components/About.astro';
 import Reviews from '../../components/Reviews.astro';
 import Gallery from '../../components/Gallery.astro';
 import CTA from '../../components/CTA.astro';
+import { brand } from '../../config/brand';
 import { client } from '../../data/client';
 import { arabicServices, arabicReviews } from '../../data/arabicContent';
 ---
@@ -75,11 +76,13 @@ import { arabicServices, arabicReviews } from '../../data/arabicContent';
     imageAlt="فريق باكينام للمقاولات أثناء تنفيذ مشروع بناء في الخرطوم"
   />
 
-  <Reviews
-    topper="شهادات عملائنا"
-    heading="ثقة العائلات في الخرطوم والمغتربين في الخارج"
-    reviews={arabicReviews.slice(0, 3)}
-  />
+  {brand.reviews && (
+    <Reviews
+      topper="شهادات عملائنا"
+      heading="ثقة العائلات في الخرطوم والمغتربين في الخارج"
+      reviews={arabicReviews.slice(0, 3)}
+    />
+  )}
 
   <Gallery
     topper="معرض أعمالنا"

@@ -19,7 +19,7 @@ const nav = [
   { label: t('nav.home'),     href: getLocalizedPath('/', lang) },
   { label: t('nav.about'),    href: getLocalizedPath('/about', lang) },
   { label: t('nav.services'), href: getLocalizedPath('/services', lang) },
-  { label: t('nav.reviews'),  href: getLocalizedPath('/reviews', lang) },
+  ...(brand.reviews ? [{ label: t('nav.reviews'),  href: getLocalizedPath('/reviews', lang) }] : []),
   { label: t('nav.contact'),  href: getLocalizedPath('/contact', lang) },
 ];
 
