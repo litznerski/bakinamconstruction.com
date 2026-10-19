@@ -8,8 +8,9 @@ dist/
 # ── Dependencies ──────────────────────────────────────────────────────────────
 node_modules/
 
-# ── pnpm store (belongs in ~/Library/pnpm/store, not project root) ────────────
+# ── pnpm store & local workspace config ─────────────────────────────────────────
 .pnpm-store/
+pnpm-workspace.yaml
 
 # ── Lockfiles: keep pnpm-lock.yaml, ignore npm/yarn ──────────────────────────
 package-lock.json
