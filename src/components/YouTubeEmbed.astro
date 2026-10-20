@@ -1,0 +1,80 @@
+---
+interface Props {
+  url: string;
+  title?: string;
+  caption?: string;
+  isShort?: boolean;
+}
+
+const { url, title = 'YouTube video player', caption, isShort: propIsShort } = Astro.props;
+
+function extractYouTubeId(inputUrl: string): { id: string | null; isShort: boolean } {
+  if (!inputUrl) return { id: null, isShort: false };
+
+  // Direct ID check (11 characters)
+  if (/^[a-zA-Z0-9_-]{11}$/.test(inputUrl.trim())) {
+    return { id: inputUrl.trim(), isShort: false };
+  }
+
+  // Shorts check
+  const shortsMatch = inputUrl.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/i);
+  if (shortsMatch && shortsMatch[1]) {
+    return { id: shortsMatch[1], isShort: true };
+  }
+
+  // Standard watch URL
+  const watchMatch = inputUrl.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+  if (watchMatch && watchMatch[1]) {
+    return { id: watchMatch[1], isShort: false };
+  }
+
+  // youtu.be short URL
+  const youtuBeMatch = inputUrl.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+  if (youtuBeMatch && youtuBeMatch[1]) {
+    return { id: youtuBeMatch[1], isShort: false };
+  }
+
+  // embed URL
+  const embedMatch = inputUrl.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
+  if (embedMatch && embedMatch[1]) {
+    return { id: embedMatch[1], isShort: false };
+  }
+
+  return { id: null, isShort: false };
+}
+
+const { id: videoId, isShort: detectedIsShort } = extractYouTubeId(url);
+const isShort = propIsShort !== undefined ? propIsShort : detectedIsShort;
+const embedUrl = videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null;
+---
+
+{
+  embedUrl ? (
+    <figure class="my-8 mx-auto w-full max-w-full">
+      <div
+        class:list={[
+          'relative overflow-hidden rounded-xl bg-surface border border-border shadow-md',
+          isShort ? 'aspect-9/16 max-w-sm mx-auto' : 'aspect-video w-full',
+        ]}
+      >
+        <iframe
+          src={embedUrl}
+          title={title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          class="absolute inset-0 size-full border-0"
+        />
+      </div>
+      {caption && (
+        <figcaption class="mt-2.5 text-center text-sm text-text-muted italic">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  ) : (
+    <div class="my-6 rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+      Invalid YouTube URL: {url}
+    </div>
+  )
+}

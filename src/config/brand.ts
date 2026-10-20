@@ -24,6 +24,8 @@ export const brand = {
   // ── Feature Flags ──────────────────────────────────────────────────────────
   /** Set to false to hide all review sections, pages, and nav links site-wide */
   reviews: false,
+  /** Set to false to hide all blog sections, pages, and nav links site-wide */
+  blog: true,
 
   // ── Fonts ──────────────────────────────────────────────────────────────────
   // To swap fonts: change the `name` values here AND update astro.config.mjs

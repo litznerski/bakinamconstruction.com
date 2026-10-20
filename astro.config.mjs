@@ -3,12 +3,13 @@ import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   site: 'https://bakinamconstruction.com',
   output: 'static',
 
-  integrations: [sitemap(), robotsTxt()],
+  integrations: [sitemap(), robotsTxt(), mdx()],
 
   i18n: {
     defaultLocale: 'en',
