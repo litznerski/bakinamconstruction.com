@@ -11,6 +11,8 @@ const blog = defineCollection({
       author: z.string().default('Team'),
       date: z.coerce.date(),
       tags: z.array(z.string()).default([]),
+      status: z.enum(['draft', 'public']).default('draft'),
+      lang: z.enum(['en', 'ar']).default('en'),
       draft: z.boolean().default(false),
       image: image().optional(),
     }),

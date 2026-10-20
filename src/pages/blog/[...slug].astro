@@ -3,14 +3,31 @@ import { getCollection, render } from 'astro:content';
 import PostLayout from '../../layouts/PostLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getCollection('blog', ({ data, id }) =>
+    data.status === 'public' && !data.draft && data.lang !== 'ar' && !id.startsWith('ar/')
+  );
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
   }));
 }
 
-const { post } = Astro.props;
+let { post } = Astro.props;
+const { slug } = Astro.params;
+
+if (!post || post.data?.lang === 'ar') {
+  const enPosts = await getCollection('blog', ({ data, id }) =>
+    id === slug && data.lang !== 'ar' && !id.startsWith('ar/') && data.status === 'public' && !data.draft
+  );
+  if (enPosts.length > 0) {
+    post = enPosts[0];
+  }
+}
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
 const { Content } = await render(post);
 ---
 
