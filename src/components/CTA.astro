@@ -1,5 +1,7 @@
 ---
 import { client } from '../data/client';
+import { getLangFromUrl, getLocalizedPath, useTranslations } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
 
 interface Props {
   title?: string;
@@ -7,18 +9,31 @@ interface Props {
   buttonText?: string;
   buttonHref?: string;
   callText?: string;
+  lang?: Locale;
 }
 
 const {
-  title = 'Ready to Restore Your Home in Khartoum?',
-  description = 'Whether you are in Sudan or living abroad, talk to our team today for a transparent assessment, damage review, and consultation.',
-  buttonText = 'Schedule a Consultation',
-  buttonHref = '/contact',
-  callText,
+  title: propTitle,
+  description: propDescription,
+  buttonText: propButtonText,
+  buttonHref: propButtonHref,
+  callText: propCallText,
+  lang: propLang,
 } = Astro.props;
 
-const rawPrefix = callText ? callText.replace(client.phoneFormatted, '').trim() : 'Call';
-const callPrefix = rawPrefix.replace(client.phoneFormatted.trim(), '').trim();
+const lang: Locale = propLang || (Astro.currentLocale as Locale) || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const isRtl = lang === 'ar';
+
+const title = propTitle || t('cta.title');
+const description = propDescription || t('cta.desc');
+const buttonText = propButtonText || t('cta.btn');
+const buttonHref = propButtonHref || getLocalizedPath('/contact', lang);
+
+const defaultCallPrefix = isRtl ? 'اتصل بنا' : 'Call';
+const callPrefix = propCallText
+  ? propCallText.replace(client.phoneFormatted, '').trim()
+  : defaultCallPrefix;
 ---
 
 <section class="relative overflow-hidden bg-primary py-16 sm:py-20 lg:py-24">

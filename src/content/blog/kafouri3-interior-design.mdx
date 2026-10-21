@@ -1,38 +1,45 @@
 ---
-title: "Interior Design, Kafouri 3"
+title: "Welcome to Kafouri 3"
 description: "The interior design and finishing of our home in Kafouri 3 before the war and looting."
 author: "Christof Litznerski"
 date: 2026-10-20
 tags: ["Kafouri3", "interiordesign", "finishing"]
-image: "../../assets/images/blog/kafouri3-interior-design/IMG_2725.jpeg"
-status: "draft"
+image: "../../assets/images/blog/kafouri3-interior-design/welcome.jpeg"
+status: "public"
 ---
 
+import { Image } from 'astro:assets';
 import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
 import BlogGallery from '../../components/BlogGallery.astro';
+import welcome from '../../assets/images/blog/kafouri3-interior-design/welcome.jpeg';
 import img2725 from '../../assets/images/blog/kafouri3-interior-design/IMG_2725.jpeg';
 import img2768 from '../../assets/images/blog/kafouri3-interior-design/IMG_2768.jpeg';
 import img3274 from '../../assets/images/blog/kafouri3-interior-design/IMG_3274.jpeg';
 
-The interior of our home in Kafouri 3 before the outbreak of the war and the subsequent looting. Every room was planned with modern fixtures, carefully selected lighting, and meticulous architectural detail.
+<figure class="my-8">
+  <Image
+    src={welcome}
+    alt="Welcome to our home in Kafouri 3"
+    class="w-full rounded-xl border border-border shadow-md object-cover max-h-[500px]"
+  />
+  <figcaption class="mt-2.5 text-center text-sm text-text-muted italic">
+    Welcome to our home in Kafouri 3.
+  </figcaption>
+</figure>
+
+The interior of our home in Kafouri 3 before the outbreak of the war and the subsequent looting. Every room was planned with attention to details, carefully selected lighting, and carefully selected furnitures
 
 <YouTubeEmbed
-  url="https://youtube.com/shorts/hJVqIX40MwY"
+  url="https://youtube.com/shorts/2mEmyhCMt_4"
   title="Kafouri 3 Interior Tour"
-  caption="A video walkthrough of our home interior in Kafouri 3, Khartoum."
+  caption="Entering the appartment through the main door."
 />
 
-### Preserving Memory & Guiding Restoration
-
-Documenting and understanding what was built is the first crucial step toward restoration. The materials, room proportions, gypsum ceiling work, and custom joinery captured in these records provide the blueprint for future rehabilitation.
-
-<BlogGallery
-  columns={3}
-  images={[
-    { src: img2725, alt: "Architectural proportions and natural lighting", caption: "Natural lighting and window placement" },
-    { src: img2768, alt: "Entrance hallway and transition areas", caption: "Interior layout and transition corridors" },
-    { src: img3274, alt: "Finishing details and ceiling treatments", caption: "Finishing details and craftsmanship" },
-  ]}
+<YouTubeEmbed
+  url="https://youtube.com/shorts/HfMjATQQrGI"
+  title="The Entrance hallway"
+  caption="The hallway at the entrance of the apartment."
 />
 
-For homeowners in Khartoum and diaspora families looking to restore or assess damaged homes, maintaining detailed visual documentation is essential for accurate cost estimation and milestone-driven rehabilitation.
+
+

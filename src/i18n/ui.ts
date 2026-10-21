@@ -63,6 +63,8 @@ export const ui = {
     // Footer
     'footer.company': 'Company',
     'footer.support': 'Support',
+    'footer.address.line1': 'Kafouri Block 3',
+    'footer.address.line2': 'Khartoum, Khartoum State',
     'footer.rights': 'All rights reserved.',
   },
   ar: {
@@ -118,8 +120,10 @@ export const ui = {
     'cta.btn': 'احجز استشارة مع فريقنا',
 
     // Footer
-    'footer.company': 'روابط سريعة',
-    'footer.support': 'المساعدة القانونية',
+    'footer.company': 'الشركة',
+    'footer.support': 'الدعم والمساعدة',
+    'footer.address.line1': 'كافوري، مربع ٣',
+    'footer.address.line2': 'الخرطوم، ولاية الخرطوم',
     'footer.rights': 'جميع الحقوق محفوظة.',
   },
 } as const;
