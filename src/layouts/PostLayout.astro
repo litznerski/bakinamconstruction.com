@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import CTA from '../components/CTA.astro';
 import type { Locale } from '../i18n/ui';
 import { getLocalizedPath } from '../i18n/utils';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
   title: string;
@@ -12,9 +13,10 @@ interface Props {
   date: Date;
   author?: string;
   lang?: Locale;
+  image?: ImageMetadata | string;
 }
 
-const { title, description, date, author = 'Team', lang = 'en' } = Astro.props;
+const { title, description, date, author = 'Team', lang = 'en', image } = Astro.props;
 
 const isRtl = lang === 'ar';
 const formattedDate = date.toLocaleDateString(isRtl ? 'ar-EG' : 'en-US', {
@@ -30,7 +32,7 @@ const homeHref = getLocalizedPath('/', lang);
 const blogHref = getLocalizedPath('/blog', lang);
 ---
 
-<BaseLayout lang={lang} title={title} description={description}>
+<BaseLayout lang={lang} title={title} description={description} image={image}>
   <Header slot="header" lang={lang} />
 
   <!-- Post hero -->
