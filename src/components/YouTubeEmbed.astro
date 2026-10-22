@@ -45,7 +45,10 @@ function extractYouTubeId(inputUrl: string): { id: string | null; isShort: boole
 
 const { id: videoId, isShort: detectedIsShort } = extractYouTubeId(url);
 const isShort = propIsShort !== undefined ? propIsShort : detectedIsShort;
-const embedUrl = videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : null;
+// cc_load_policy=0 and enablejsapi=1 ensure captions/subtitles are not shown by default
+const embedUrl = videoId
+  ? `https://www.youtube-nocookie.com/embed/${videoId}?cc_load_policy=0&iv_load_policy=3&enablejsapi=1`
+  : null;
 ---
 
 {
@@ -63,6 +66,7 @@ const embedUrl = videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` :
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
+          data-yt-embed
           class="absolute inset-0 size-full border-0"
         />
       </div>
@@ -78,3 +82,43 @@ const embedUrl = videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` :
     </div>
   )
 }
+
+<script>
+  function disableYouTubeCaptions() {
+    const iframes = document.querySelectorAll<HTMLIFrameElement>('iframe[data-yt-embed]');
+
+    function sendUnload(iframe: HTMLIFrameElement) {
+      try {
+        iframe.contentWindow?.postMessage(
+          JSON.stringify({ event: 'command', func: 'unloadModule', args: ['captions'] }),
+          '*'
+        );
+        iframe.contentWindow?.postMessage(
+          JSON.stringify({ event: 'command', func: 'unloadModule', args: ['cc'] }),
+          '*'
+        );
+      } catch {}
+    }
+
+    iframes.forEach((iframe) => {
+      iframe.addEventListener('load', () => {
+        sendUnload(iframe);
+        setTimeout(() => sendUnload(iframe), 500);
+        setTimeout(() => sendUnload(iframe), 1500);
+      });
+    });
+
+    window.addEventListener('message', (event) => {
+      try {
+        if (typeof event.data !== 'string') return;
+        const data = JSON.parse(event.data);
+        if (data.event === 'onReady' || data.event === 'onStateChange' || data.event === 'onApiChange') {
+          iframes.forEach((iframe) => sendUnload(iframe));
+        }
+      } catch {}
+    });
+  }
+
+  disableYouTubeCaptions();
+  document.addEventListener('astro:page-load', disableYouTubeCaptions);
+</script>
