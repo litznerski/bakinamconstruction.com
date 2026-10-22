@@ -1,0 +1,49 @@
+---
+title: "The new House in Kafouri 14"
+description: "Our new home in Kafouri 14 is coming back to life."
+author: "Christof Litznerski"
+date: 2026-10-23
+tags: ["Kafouri14", "housebuilding", "milestones"]
+image: "../../assets/images/blog/kafouri14-01/6.jpeg"
+status: "public"
+---
+
+import { Image } from 'astro:assets';
+// import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
+import BlogGallery from '../../components/BlogGallery.astro';
+// import Img1 from '../../assets/images/blog/kafouri14-01/1.jpeg';
+import Img2 from '../../assets/images/blog/kafouri14-01/2.jpeg';
+import Img3 from '../../assets/images/blog/kafouri14-01/3.jpeg';
+import Img4 from '../../assets/images/blog/kafouri14-01/4.jpeg';
+import Img5 from '../../assets/images/blog/kafouri14-01/5.jpeg';
+import Img6 from '../../assets/images/blog/kafouri14-01/6.jpeg';
+import Img7 from '../../assets/images/blog/kafouri14-01/7.jpeg';
+import Img8 from '../../assets/images/blog/kafouri14-01/8.jpeg';
+
+The new house in Kafouri 14 was still under construction when the war started in April 2023. There was not much to steal or vandalize.
+When we returned we found all the electrical wiring stripped and stolen.
+Because the house is on a corner plot near to an electrical company the bullet and shrapnel holes in the walls witness the fighting in this area.
+
+<figure class="my-8">
+  <Image
+    src={Img6}
+    alt="Bullet and shrapnel holes"
+    class="w-full rounded-xl border border-border shadow-md object-cover max-h-[500px]"
+  />
+  <figcaption class="mt-2.5 text-center text-sm text-text-muted italic">
+    Bullet and shrapnel holes in the walls.
+  </figcaption>
+</figure>
+
+Outside view in October 2026.
+<BlogGallery
+  columns={2}
+  images={[
+    { src: Img4, alt: "Kafouri 14 exterior view 1", caption: "Kafouri 14 exterior view 1" },
+    { src: Img2, alt: "Kafouri 14 exterior view 2", caption: "Kafouri 14 exterior view 2" },
+    { src: Img3, alt: "Kafouri 14 exterior view 3", caption: "Kafouri 14 exterior view 3, Garden" },
+    { src: Img5, alt: "Kafouri 14 exterior view 4", caption: "Kafouri 14 exterior view 4" },
+    { src: Img7, alt: "Airial view 1", caption: "The electrical company in the left bottom corner" },
+    { src: Img8, alt: "Airial view 2", caption: "The plot on the left side" },
+  ]}
+/>
