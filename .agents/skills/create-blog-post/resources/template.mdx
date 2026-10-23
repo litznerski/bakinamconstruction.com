@@ -1,0 +1,46 @@
+---
+title: "{{TITLE}}"
+description: "{{DESCRIPTION}}"
+author: "{{AUTHOR}}"
+date: {{DATE}}
+tags: {{TAGS}}
+image: "../../assets/images/blog/{{SLUG}}/placeholder.jpg"
+status: "draft"
+lang: "en"
+---
+
+import { Image } from 'astro:assets';
+// import YouTubeEmbed from '../../components/YouTubeEmbed.astro';
+import BlogGallery from '../../components/BlogGallery.astro';
+import HeroImg from '../../assets/images/blog/{{SLUG}}/placeholder.jpg';
+
+Write the opening narrative of the project milestone or story here. Introduce the location, background, and the goals for this phase of construction or rehabilitation.
+
+<figure class="my-8">
+  <Image
+    src={HeroImg}
+    alt="{{TITLE}}"
+    class="w-full rounded-xl border border-border shadow-md object-cover max-h-[500px]"
+  />
+  <figcaption class="mt-2.5 text-center text-sm text-text-muted italic">
+    Caption describing the progress or key details shown in the photo.
+  </figcaption>
+</figure>
+
+Detailed narrative continues here. You can explain challenges faced on the ground in Khartoum, engineering solutions implemented, or materials procured.
+
+{/*
+Optional photo gallery for multiple site images:
+<BlogGallery
+  columns={2}
+  images={[
+    { src: HeroImg, alt: "Site progress 1", caption: "Initial site inspection" },
+    { src: HeroImg, alt: "Site progress 2", caption: "Materials delivered and secured" },
+  ]}
+/>
+*/}
+
+{/*
+Optional YouTube video walkthrough:
+<YouTubeEmbed id="VIDEO_ID_HERE" title="{{TITLE}} Video Walkthrough" />
+*/}
