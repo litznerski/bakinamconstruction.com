@@ -75,7 +75,8 @@ const populatedContent = templateContent
   .replace(/\{\{AUTHOR\}\}/g, author)
   .replace(/\{\{DATE\}\}/g, today)
   .replace(/\{\{TAGS\}\}/g, JSON.stringify(tags))
-  .replace(/\{\{SLUG\}\}/g, slug);
+  .replace(/\{\{SLUG\}\}/g, slug)
+  .replace(/\{\{VIDEO_CAPTION\}\}/g, title);
 
 // 4. Write MDX file
 const mdxPath = path.join(projectRoot, 'src/content/blog', `${slug}.mdx`);
