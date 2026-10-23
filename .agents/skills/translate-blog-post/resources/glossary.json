@@ -1,0 +1,32 @@
+{
+  "authors": {
+    "Christof Litznerski": "كريستوف ليتزنرسكي",
+    "Bakinam Osman Rahama": "باكينام عثمان رحمة",
+    "Team": "فريق العمل"
+  },
+  "tags": {
+    "Kafouri14": "كافوري١٤",
+    "Kafouri3": "كافوري٣",
+    "construction": "بناء_المنازل",
+    "housebuilding": "بناء_المنازل",
+    "milestones": "محطات",
+    "kitchen": "مطبخ",
+    "interior": "تصميم_داخلي",
+    "design": "تصميم",
+    "architecture": "هندسة_معمارية",
+    "renovation": "ترميم",
+    "rehabilitation": "إعادة_إعمار"
+  },
+  "terms": {
+    "center column": "العمود الأوسط",
+    "concrete": "خرسانة",
+    "reinforcement": "تسليح",
+    "wiring": "توصيلات كهربائية",
+    "exterior view": "إطلالة خارجية",
+    "interior view": "إطلالة داخلية",
+    "kitchen area": "منطقة المطبخ",
+    "bedroom": "غرفة نوم",
+    "garden": "الحديقة",
+    "aerial view": "إطلالة جوية"
+  }
+}
