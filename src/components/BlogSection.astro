@@ -1,0 +1,166 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, getLocalizedPath } from '../i18n/utils';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  lang?: Locale;
+  limit?: number;
+  showHeading?: boolean;
+  topper?: string;
+  heading?: string;
+  description?: string;
+  showCta?: boolean;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  lang: propLang,
+  limit,
+  showHeading = true,
+  topper: customTopper,
+  heading: customHeading,
+  description: customDescription,
+  showCta: propShowCta,
+  ctaLabel: customCtaLabel,
+  ctaHref: customCtaHref,
+} = Astro.props;
+
+const lang: Locale = propLang || (Astro.currentLocale as Locale) || getLangFromUrl(Astro.url);
+const isRtl = lang === 'ar';
+
+const allPosts = (
+  await getCollection('blog', ({ data, id }) =>
+    isRtl
+      ? (data.lang === 'ar' || id.startsWith('ar/')) && data.status === 'public' && !data.draft
+      : data.lang !== 'ar' && !id.startsWith('ar/') && data.status === 'public' && !data.draft
+  )
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const posts = typeof limit === 'number' && limit > 0 ? allPosts.slice(0, limit) : allPosts;
+
+const topper = customTopper ?? (isRtl ? 'مشاريع وقصص من الميدان' : 'Stories & Projects');
+const heading = customHeading ?? (isRtl ? 'آخر المستجدات والمشاريع' : 'Latest Projects & Updates');
+const description =
+  customDescription ??
+  (isRtl
+    ? 'تابعوا أعمال إعادة التأهيل، المحطات الهندسية، ومسيرة استعادة المنازل خطوة بخطوة في الخرطوم.'
+    : 'Follow our ongoing restoration work, engineering milestones, and rebuilding journey in Khartoum.');
+
+const emptyText = isRtl
+  ? 'لا توجد مقالات منشورة حالياً. يرجى العودة قريباً!'
+  : 'No posts yet. Check back soon!';
+
+const readStoryText = isRtl ? 'اقرأ المقال' : 'Read story';
+const byAuthorText = isRtl ? 'بقلم:' : 'By';
+
+const showCta = propShowCta ?? (showHeading && allPosts.length > 0);
+const ctaLabel = customCtaLabel ?? (isRtl ? 'استعرض جميع المقالات' : 'View All Stories');
+const ctaHref = customCtaHref ?? getLocalizedPath('/blog', lang);
+---
+
+<section class="py-section">
+  <div class="mx-auto max-w-site px-4 sm:px-6">
+    {showHeading && (
+      <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-14">
+        <span class="text-topper font-bold uppercase tracking-widest text-accent">
+          {topper}
+        </span>
+        <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">
+          {heading}
+        </h2>
+        {description && (
+          <p class="mt-3 text-text-muted leading-relaxed">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+
+    {posts.length === 0 ? (
+      <div class="text-center py-12">
+        <p class="text-text-muted text-lg">{emptyText}</p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => {
+          const formattedDate = post.data.date.toLocaleDateString(isRtl ? 'ar-EG' : 'en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          });
+          const postHref = isRtl
+            ? `/ar/blog/${post.id.replace(/^ar\//, '')}`
+            : `/blog/${post.id}`;
+
+          return (
+            <article class="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              {post.data.image && (
+                <div class="relative aspect-16/10 w-full overflow-hidden bg-surface">
+                  <Image
+                    src={post.data.image}
+                    alt={post.data.title}
+                    width={640}
+                    height={400}
+                    loading="lazy"
+                    decoding="async"
+                    class="size-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              )}
+              <div class="flex flex-1 flex-col p-6 sm:p-7">
+                <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent">
+                  <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
+                  {post.data.tags.length > 0 && (
+                    <>
+                      <span aria-hidden="true">&bull;</span>
+                      <span class="rounded bg-surface px-2 py-0.5 text-text-muted">
+                        {post.data.tags[0]}
+                      </span>
+                    </>
+                  )}
+                </div>
+
+                <h3 class="mt-3 font-heading text-h3 font-bold text-text group-hover:text-primary transition-colors line-clamp-2">
+                  <a href={postHref} class="after:absolute after:inset-0">
+                    {post.data.title}
+                  </a>
+                </h3>
+
+                <p class="mt-3 flex-1 text-sm leading-relaxed text-text-muted line-clamp-3">
+                  {post.data.description}
+                </p>
+
+                <div class="mt-6 flex items-center justify-between border-t border-border/60 pt-4 text-xs text-text-muted">
+                  <span>{byAuthorText} {post.data.author}</span>
+                  <span class="inline-flex items-center gap-1 font-bold text-primary group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-transform">
+                    {readStoryText}
+                    <svg class="size-3.5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    )}
+
+    {showCta && (
+      <div class="mt-12 text-center">
+        <a
+          href={ctaHref}
+          class="inline-flex min-h-[44px] items-center gap-2 rounded-md border-2 border-primary px-6 py-3 text-base font-bold text-primary transition-colors hover:bg-primary hover:text-primary-fg"
+        >
+          {ctaLabel}
+          <svg class="size-4 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    )}
+  </div>
+</section>
