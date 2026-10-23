@@ -4,51 +4,95 @@ interface Props {
   title?: string;
   caption?: string;
   isShort?: boolean;
+  playlist?: string;
+  showPlaylistLink?: boolean;
+  playlistLabel?: string;
 }
 
-const { url, title = 'YouTube video player', caption, isShort: propIsShort } = Astro.props;
+const {
+  url,
+  title = 'YouTube video player',
+  caption,
+  isShort: propIsShort,
+  playlist: propPlaylist,
+  showPlaylistLink = true,
+  playlistLabel: propPlaylistLabel,
+} = Astro.props;
 
-function extractYouTubeId(inputUrl: string): { id: string | null; isShort: boolean } {
-  if (!inputUrl) return { id: null, isShort: false };
+function extractYouTubeInfo(inputUrl: string): { id: string | null; isShort: boolean; playlistId: string | null } {
+  if (!inputUrl) return { id: null, isShort: false, playlistId: null };
+
+  let playlistId: string | null = null;
+  const listMatch = inputUrl.match(/[?&]list=([a-zA-Z0-9_-]+)/);
+  if (listMatch && listMatch[1]) {
+    playlistId = listMatch[1];
+  }
 
   // Direct ID check (11 characters)
   if (/^[a-zA-Z0-9_-]{11}$/.test(inputUrl.trim())) {
-    return { id: inputUrl.trim(), isShort: false };
+    return { id: inputUrl.trim(), isShort: false, playlistId };
   }
 
   // Shorts check
   const shortsMatch = inputUrl.match(/youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/i);
   if (shortsMatch && shortsMatch[1]) {
-    return { id: shortsMatch[1], isShort: true };
+    return { id: shortsMatch[1], isShort: true, playlistId };
   }
 
   // Standard watch URL
   const watchMatch = inputUrl.match(/[?&]v=([a-zA-Z0-9_-]+)/);
   if (watchMatch && watchMatch[1]) {
-    return { id: watchMatch[1], isShort: false };
+    return { id: watchMatch[1], isShort: false, playlistId };
   }
 
   // youtu.be short URL
   const youtuBeMatch = inputUrl.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
   if (youtuBeMatch && youtuBeMatch[1]) {
-    return { id: youtuBeMatch[1], isShort: false };
+    return { id: youtuBeMatch[1], isShort: false, playlistId };
   }
 
   // embed URL
   const embedMatch = inputUrl.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
   if (embedMatch && embedMatch[1]) {
-    return { id: embedMatch[1], isShort: false };
+    return { id: embedMatch[1], isShort: false, playlistId };
   }
 
-  return { id: null, isShort: false };
+  return { id: null, isShort: false, playlistId };
 }
 
-const { id: videoId, isShort: detectedIsShort } = extractYouTubeId(url);
+const { id: videoId, isShort: detectedIsShort, playlistId: detectedPlaylistId } = extractYouTubeInfo(url);
 const isShort = propIsShort !== undefined ? propIsShort : detectedIsShort;
-// cc_load_policy=0 and enablejsapi=1 ensure captions/subtitles are not shown by default
+
+let effectivePlaylistId = propPlaylist?.trim() || detectedPlaylistId;
+if (effectivePlaylistId) {
+  const match = effectivePlaylistId.match(/[?&]list=([a-zA-Z0-9_-]+)/);
+  if (match && match[1]) {
+    effectivePlaylistId = match[1];
+  }
+}
+
+const params = new URLSearchParams({
+  cc_load_policy: '0',
+  iv_load_policy: '3',
+  enablejsapi: '1',
+  rel: '0', // Restricts 'More Videos' and related suggestions to the same channel
+});
+
+if (effectivePlaylistId) {
+  params.set('list', effectivePlaylistId);
+}
+
 const embedUrl = videoId
-  ? `https://www.youtube-nocookie.com/embed/${videoId}?cc_load_policy=0&iv_load_policy=3&enablejsapi=1`
+  ? `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`
   : null;
+
+const playlistHref = effectivePlaylistId
+  ? `https://www.youtube.com/playlist?list=${effectivePlaylistId}`
+  : null;
+
+const isRtl = Astro.currentLocale === 'ar';
+const defaultPlaylistLabel = isRtl ? 'مشاهدة قائمة التشغيل كاملة على يوتيوب' : 'Watch full playlist on YouTube';
+const playlistLabel = propPlaylistLabel || defaultPlaylistLabel;
 ---
 
 {
@@ -74,6 +118,21 @@ const embedUrl = videoId
         <figcaption class="mt-2.5 text-center text-sm text-text-muted italic">
           {caption}
         </figcaption>
+      )}
+      {playlistHref && showPlaylistLink && (
+        <div class="mt-2 text-center">
+          <a
+            href={playlistHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-accent transition-colors"
+          >
+            <svg class="size-3.5 rtl:rotate-180" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19 9H2v2h17V9zm0-4H2v2h17V5zM2 15h13v-2H2v2zm15-2v6l5-3-5-3z" />
+            </svg>
+            <span>{playlistLabel}</span>
+          </a>
+        </div>
       )}
     </figure>
   ) : (
