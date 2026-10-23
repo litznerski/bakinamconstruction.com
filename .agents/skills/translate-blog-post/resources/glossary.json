@@ -15,7 +15,8 @@
     "design": "تصميم",
     "architecture": "هندسة_معمارية",
     "renovation": "ترميم",
-    "rehabilitation": "إعادة_إعمار"
+    "rehabilitation": "إعادة_إعمار",
+    "groundfloor": "الطابق_الأرضي"
   },
   "terms": {
     "center column": "العمود الأوسط",
@@ -27,6 +28,10 @@
     "kitchen area": "منطقة المطبخ",
     "bedroom": "غرفة نوم",
     "garden": "الحديقة",
-    "aerial view": "إطلالة جوية"
+    "aerial view": "إطلالة جوية",
+    "ground floor": "الطابق الأرضي",
+    "hall": "الصالة",
+    "dining area": "غرفة الطعام",
+    "guest room": "غرفة الضيوف"
   }
 }
