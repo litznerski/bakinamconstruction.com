@@ -66,6 +66,11 @@ export const ui = {
     'footer.address.line1': 'Kafouri Block 3',
     'footer.address.line2': 'Khartoum, Khartoum State',
     'footer.rights': 'All rights reserved.',
+
+    // WhatsApp
+    'whatsapp.button': 'Chat on WhatsApp',
+    'whatsapp.chatWithUs': 'Chat with us on WhatsApp',
+    'whatsapp.message': 'Hello Bakinam Construction, I would like to inquire about your construction and rehabilitation services.',
   },
   ar: {
     'site.title': 'باكينام للمقاولات والهندسة',
@@ -125,5 +130,10 @@ export const ui = {
     'footer.address.line1': 'كافوري، مربع ٣',
     'footer.address.line2': 'الخرطوم، ولاية الخرطوم',
     'footer.rights': 'جميع الحقوق محفوظة.',
+
+    // WhatsApp
+    'whatsapp.button': 'تواصل عبر واتساب',
+    'whatsapp.chatWithUs': 'تواصل معنا مباشرة عبر واتساب',
+    'whatsapp.message': 'السلام عليكم، أود الاستفسار عن خدمات البناء وإعادة الإعمار لدى شركة باكينام.',
   },
 } as const;

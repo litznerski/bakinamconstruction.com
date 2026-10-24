@@ -4,6 +4,7 @@ import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import Banner from '../../../components/Banner.astro';
 import { client } from '../../../data/client';
+import WhatsAppButton from '../../../components/WhatsAppButton.astro';
 ---
 
 <BaseLayout
@@ -98,6 +99,9 @@ import { client } from '../../../data/client';
           <a href={`tel:${client.phoneForTel}`} dir="ltr" class="mt-1 inline-block text-primary-light font-medium transition-colors hover:text-primary">
             <bdi dir="ltr">{client.phoneFormatted}</bdi>
           </a>
+          <div class="mt-2.5">
+            <WhatsAppButton variant="inline" />
+          </div>
         </div>
 
         <div>

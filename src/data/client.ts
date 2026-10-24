@@ -15,6 +15,8 @@ export const client = {
   email: 'contact@bakinamconstruction.com',
   phoneForTel: '+249123009572',
   phoneFormatted: '\u200E+249 12 300 9572',
+  whatsAppNumber: '249123009572',
+  whatsAppUrl: 'https://wa.me/249123009572',
   license: '',
   address: {
     lineOne: 'Kafouri Block 3',

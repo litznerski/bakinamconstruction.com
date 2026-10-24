@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import Banner from '../../components/Banner.astro';
 import { brand } from '../../config/brand';
 import { client } from '../../data/client';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
 ---
 
 <BaseLayout title="Contact" description={`Get in touch with ${brand.name}. Schedule a consultation or ask us a question.`}>
@@ -94,6 +95,9 @@ import { client } from '../../data/client';
           <a href={`tel:${client.phoneForTel}`} class="mt-1 inline-block text-primary-light font-medium transition-colors hover:text-primary" dir="ltr">
             <bdi dir="ltr">{client.phoneFormatted}</bdi>
           </a>
+          <div class="mt-2.5">
+            <WhatsAppButton variant="inline" />
+          </div>
         </div>
 
         <div>

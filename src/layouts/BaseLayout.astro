@@ -12,6 +12,7 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import { brand } from '../config/brand';
 import { client } from '../data/client';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { getLangFromUrl, getLocalizedPath } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
 
@@ -146,5 +147,7 @@ if (image && typeof image === 'object') {
     </main>
 
     <slot name="footer" />
+
+    <WhatsAppButton variant="floating" />
   </body>
 </html>
