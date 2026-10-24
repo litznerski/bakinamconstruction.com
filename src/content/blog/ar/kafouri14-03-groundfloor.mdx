@@ -10,7 +10,7 @@ lang: "ar"
 ---
 
 import { Image } from 'astro:assets';
-// import YouTubeEmbed from '../../../components/YouTubeEmbed.astro';
+import YouTubeEmbed from '../../../components/YouTubeEmbed.astro';
 import BlogGallery from '../../../components/BlogGallery.astro';
 import HeroImg from '../../../assets/images/blog/kafouri14-03-groundfloor/1.jpeg';
 import Img1 from '../../../assets/images/blog/kafouri14-03-groundfloor/1.jpeg';
@@ -23,6 +23,12 @@ import Img7 from '../../../assets/images/blog/kafouri14-03-groundfloor/7.jpeg';
 import Img8 from '../../../assets/images/blog/kafouri14-03-groundfloor/8.jpeg';
 
 تتواصل الأعمال داخل كافوري ١٤. لقد وصلت المواد والتجهيزات من القاهرة وهي في انتظار بدء أعمال التركيب.
+
+<YouTubeEmbed
+  url="https://youtube.com/shorts/V7MOQLL16tw"
+  title="كافوري ١٤ - الطابق الأرضي"
+  caption="كافوري ١٤ - جولة في الطابق الأرضي"
+/>
 
 <BlogGallery
   orientation="landscape"
@@ -38,12 +44,3 @@ import Img8 from '../../../assets/images/blog/kafouri14-03-groundfloor/8.jpeg';
     { src: Img4, alt: "الطابق الأرضي، إطلالة ٤", caption: "غرفة الضيوف" },
   ]}
 />
-
-{/*
-<YouTubeEmbed
-  url="VIDEO_URL"
-  playlist="YOUTUBE_PLAYLIST_ID"
-  title="كافوري ١٤ - الطابق الأرضي"
-  caption="كافوري ١٤ - الطابق الأرضي"
-/>
-*/}
