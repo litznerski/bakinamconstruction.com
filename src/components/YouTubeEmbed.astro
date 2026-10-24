@@ -4,6 +4,8 @@ interface Props {
   title?: string;
   caption?: string;
   isShort?: boolean;
+  orientation?: 'landscape' | 'portrait';
+  portrait?: boolean;
   playlist?: string;
   showPlaylistLink?: boolean;
   playlistLabel?: string;
@@ -14,6 +16,8 @@ const {
   title = 'YouTube video player',
   caption,
   isShort: propIsShort,
+  orientation: propOrientation,
+  portrait: propPortrait,
   playlist: propPlaylist,
   showPlaylistLink = true,
   playlistLabel: propPlaylistLabel,
@@ -61,7 +65,14 @@ function extractYouTubeInfo(inputUrl: string): { id: string | null; isShort: boo
 }
 
 const { id: videoId, isShort: detectedIsShort, playlistId: detectedPlaylistId } = extractYouTubeInfo(url);
-const isShort = propIsShort !== undefined ? propIsShort : detectedIsShort;
+const isPortrait =
+  propOrientation === 'portrait' ||
+  Boolean(propPortrait) ||
+  (propOrientation === 'landscape'
+    ? false
+    : propIsShort !== undefined
+      ? propIsShort
+      : detectedIsShort);
 
 let effectivePlaylistId = propPlaylist?.trim() || detectedPlaylistId;
 if (effectivePlaylistId) {
@@ -101,7 +112,7 @@ const playlistLabel = propPlaylistLabel || defaultPlaylistLabel;
       <div
         class:list={[
           'relative overflow-hidden rounded-xl bg-surface border border-border shadow-md',
-          isShort ? 'aspect-9/16 max-w-sm mx-auto' : 'aspect-video w-full',
+          isPortrait ? 'aspect-9/16 max-w-sm mx-auto' : 'aspect-video w-full',
         ]}
       >
         <iframe
