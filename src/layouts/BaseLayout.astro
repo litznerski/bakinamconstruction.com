@@ -13,6 +13,7 @@ import '../styles/global.css';
 import { brand } from '../config/brand';
 import { client } from '../data/client';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
+import LanguageDetector from '../components/LanguageDetector.astro';
 import { getLangFromUrl, getLocalizedPath } from '../i18n/utils';
 import type { Locale } from '../i18n/ui';
 
@@ -127,6 +128,9 @@ if (image && typeof image === 'object') {
         if (newLang) document.documentElement.setAttribute('lang', newLang);
       });
     </script>
+
+    <!-- Language Auto-Detection & Persistent Preference -->
+    <LanguageDetector />
 
     <slot name="head" />
     <ClientRouter />

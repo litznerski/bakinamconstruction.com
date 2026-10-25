@@ -1,0 +1,51 @@
+---
+// Inline script executed in <head> before page render to avoid flash of wrong language.
+---
+
+<script is:inline>
+  (function () {
+    try {
+      var saved = localStorage.getItem('preferred_locale');
+      var path = window.location.pathname;
+      var isArabicRoute = path === '/ar' || path.startsWith('/ar/');
+
+      // 1. If user previously selected a preference manually, always respect it
+      if (saved === 'ar' && !isArabicRoute) {
+        var targetAr = '/ar' + (path === '/' ? '' : path);
+        window.location.replace(targetAr);
+        return;
+      }
+      if (saved === 'en' && isArabicRoute) {
+        var targetEn = path.replace(/^\/ar(\/|$)/, '/') || '/';
+        window.location.replace(targetEn);
+        return;
+      }
+
+      // 2. If no manual preference is saved, detect from browser languages
+      if (!saved) {
+        var langs = navigator.languages || [navigator.language || ''];
+        var prefersArabic = false;
+
+        for (var i = 0; i < langs.length; i++) {
+          var l = (langs[i] || '').toLowerCase();
+          if (l === 'ar' || l.indexOf('ar-') === 0) {
+            prefersArabic = true;
+            break;
+          }
+          if (l === 'en' || l.indexOf('en-') === 0) {
+            break;
+          }
+        }
+
+        if (prefersArabic && !isArabicRoute) {
+          var target = '/ar' + (path === '/' ? '' : path);
+          window.location.replace(target);
+        } else if (!prefersArabic && isArabicRoute && (path === '/ar' || path === '/ar/')) {
+          window.location.replace('/');
+        }
+      }
+    } catch (e) {
+      // Ignore errors (e.g. storage disabled in strict privacy mode)
+    }
+  })();
+</script>

@@ -15,6 +15,8 @@ const { class: className = '' } = Astro.props;
 
 <a
   href={targetUrl}
+  data-lang-picker={targetLang}
+  onclick={`try{localStorage.setItem('preferred_locale','${targetLang}')}catch(e){}`}
   class:list={[
     'inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-text transition-colors hover:border-primary hover:text-primary',
     className,
