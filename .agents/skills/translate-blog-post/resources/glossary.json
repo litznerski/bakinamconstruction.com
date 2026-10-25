@@ -17,7 +17,9 @@
     "renovation": "ترميم",
     "rehabilitation": "إعادة_إعمار",
     "groundfloor": "الطابق_الأرضي",
-    "firstfloor": "الطابق_الأول"
+    "firstfloor": "الطابق_الأول",
+    "secondfloor": "الطابق_الثاني",
+    "rooftop": "السطح"
   },
   "terms": {
     "center column": "العمود الأوسط",
@@ -32,6 +34,8 @@
     "aerial view": "إطلالة جوية",
     "ground floor": "الطابق الأرضي",
     "first floor": "الطابق الأول",
+    "second floor": "الطابق الثاني",
+    "rooftop": "السطح",
     "staircase": "الدرج",
     "hall": "الصالة",
     "dining area": "غرفة الطعام",
