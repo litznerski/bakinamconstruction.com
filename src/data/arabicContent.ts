@@ -1,7 +1,6 @@
 import bakinamImg from '../assets/images/team/bakinam.jpeg';
 import christofImg from '../assets/images/team/christof.jpeg';
 import musabImg from '../assets/images/team/musab.jpeg';
-import salahImg from '../assets/images/team/salah.jpeg';
 
 export const arabicServices = [
   {
@@ -136,13 +135,6 @@ export const arabicTeam = [
     description:
       'أكثر من ١٠ سنوات من الخبرة الإنشائية في الخرطوم. تقود العمليات الميدانية، وشبكات الموردين المعتمدين، والتواصل مع العملاء. مشاركة في تأسيس منظمة قطرة ماء.',
     image: bakinamImg,
-  },
-  {
-    name: 'صلاح علي عباس',
-    role: 'هندسة معمارية: تصميم وتنفيذ',
-    description:
-      'رئيس قسم الهندسة المعمارية، يتولى إدارة كل من وضع التصورات التصميمية والتنفيذ الميداني للمخططات المعمارية للمشاريع السكنية والتجارية، مع ضمان التوافق بين الرؤية والتنفيذ.',
-    image: salahImg,
   },
   {
     name: 'مصعب   يوسف الزهري',

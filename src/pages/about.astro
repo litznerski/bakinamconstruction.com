@@ -9,7 +9,6 @@ import { brand } from '../config/brand';
 import bakinamImg from '../assets/images/team/bakinam.jpeg';
 import christofImg from '../assets/images/team/christof.jpeg';
 import musabImg from '../assets/images/team/musab.jpeg';
-import salahImg from '../assets/images/team/salah.jpeg';
 import constructionWorkImg from '../assets/images/about/construction_work.png';
 
 const team = [
@@ -18,12 +17,6 @@ const team = [
     role: 'Founder & Managing Director',
     description: '10+ years of construction leadership in Khartoum. Directs on-the-ground operations, master supplier networks, and client liaison. Co-founder of Drop of Water NGO.',
     image: bakinamImg,
-  },
-  {
-    name: 'Salah Ali Abbas',
-    role: 'Architectural Engineering: Design and Execution',
-    description: 'Head of Architecture, managing both the design conceptualization and the on-the-ground implementation of architectural plans, ensuring alignment between vision and execution.',
-    image: salahImg,
   },
   {
     name: 'Musab Yusuf Al-Zahri',
@@ -98,7 +91,7 @@ const team = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {team.map(({ name, role, description, image }) => (
           <div class="flex flex-col justify-between overflow-hidden rounded-lg bg-background shadow-sm border border-border">
             <div class="overflow-hidden">
